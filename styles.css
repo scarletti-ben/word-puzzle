@@ -1,0 +1,170 @@
+/* Get Custom Font from Wordle */
+@font-face {
+    font-family: 'KarnakCondensed'; /* Set the font family name */
+    src: url('https://www.nytimes.com/games/wordle/fonts/karnakcondensed-normal-700.woff'); /* Set the url for the font file */
+    font-weight: 700; /* Set the font thickness */
+    font-style: normal; /* Set the font style to normal */
+}
+
+/* Styling for the Body */
+body {
+    width: 100%; /* Ensure the body takes up the full available width of the viewport */
+    height: 100%; /* Ensure the body takes up the full available height of the viewport */
+    margin: 0; /* Remove default margin around the body, margin is external spacing between the content border and other content */
+    padding: 0; /* Remove default padding around the body, padding is internal spacing between content and its border */
+    transform-origin: top center;  /* Set the origin point for scaling, if enabled, for Google Chrome */
+    transform: scale(1.0); /* Set the scaling, used as a variant of zoom level for Google Chrome */
+    display: flex; /* Enable flexbox layout for the body */
+    flex-direction: column; /* Align children in the body vertically */
+    justify-content: center; /* Center justify children in the body in the flex direction */
+    align-items: center; /* Center justify children in the body perpendicular to flex direction */
+    background-color: #121213; /* Set dark background color for the page */
+    color: white; /* Set light text colour for the page */
+    font-family: 'KarnakCondensed', sans-serif; /* Set the font family using custom font above */
+    font-size: 20px; /* Set font size */
+}
+
+/* Reset Button Styles */
+button {
+    all: unset; /* Reset all styles */
+    display: flex; /* Reapply flexbox layout */
+    justify-content: center;
+    align-items: center;
+}
+
+/* Styling for the Mainframe Container */
+#mainframe {
+    width: 100%; /* Ensures the container takes up the full available width of its parent */
+    max-width: 600px; /* Limits the container's width to a maximum of 600px */
+    padding: 20px; /* Padding space around the entire mainframe container */
+    display: flex; /* Enable flexbox layout for the mainframe container */
+    flex-direction: column; /* Align the children of the mainframe container vertically */
+    justify-content: center; /* Center justify the children of the mainframe container in the flex direction */
+    gap: 6px; /* Space between the children of the mainframe container in the flex direction */
+}
+
+/* Styling for the grid-container Element */
+.grid-container {
+    display: flex; /* Enable flexbox layout for the grid-container element */
+    flex-direction: column; /* Align the grid-row children in the grid-container element vertically */
+    justify-content: center; /* Center justify the grid-row children in the grid-container in the flex direction */
+    gap: 6px; /* Space between the grid-row children in the grid-container element in the flex direction */
+}
+
+/* Styling for each grid-row Element */
+.grid-row {
+    display: flex; /* Enable flexbox layout for the grid-row elements */
+    flex-direction: row; /* Align items in each grid-row element horizontally */
+    justify-content: center; /* Center justify content in each grid-row element in the flex direction */
+    align-items: center; /* Center justify content in each grid-row element perpendicular to flex direction */
+    gap: 6px; /* Space between children in each grid-row element in the flex direction */
+}
+
+/* Styling for each grid-square Element */
+.grid-square {
+    display: flex;  /* Enable flexbox layout for each grid-square */
+    flex-direction: row; /* Align content in each grid-square horizontally */
+    justify-content: center; /* Center justify content in each grid-square in the flex direction */
+    align-items: center; /* Center justify content in each grid-square perpendicular to flex direction */
+    height: 60px; /* Set height for each grid-square */
+    width: 60px; /* Set width for each grid-square */
+    font-weight: bold; /* Enable bold font for each grid-square */
+    user-select: none; /* Prevent text selection for each grid-square */
+}
+
+/* Alter Styling for each grid-square Element with data-state="correct" */
+.grid-square[data-state="correct"] {
+    background-color: #538D4E; /* Set the background colour */
+}
+
+/* Alter Styling for each grid-square Element with data-state="present" */
+.grid-square[data-state="present"] {
+    background-color: #B59F3B; /* Set the background colour */
+}
+
+/* Alter Styling for each grid-square Element with data-state="absent" */
+.grid-square[data-state="absent"] {
+    background-color: #3A3A3C; /* Set the background colour */
+}
+
+/* Alter Styling for each grid-square Element with data-state="active" */
+.grid-square[data-state="active"] {
+    box-shadow: inset 0 0 0 2px #565758;  /* Enable inset border without shadow spread */
+}
+
+/* Alter Styling for grid-square with data-state="default" */
+.grid-square[data-state="default"] {
+    box-shadow: inset 0 0 0 2px #3A3A3C;  /* Enable inset border without shadow spread */
+}
+
+/* Styling for the keyboard-container Element */
+.keyboard-container {
+    display: flex; /* Enable flexbox layout for the keyboard-container element */
+    flex-direction: column; /* Align the keyboard-row children in the keyboard-container element vertically */
+    justify-content: center; /* Center justify the keyboard-row children in the keyboard-container in the flex direction */
+    gap: 0px; /* Space between the keyboard-row children in the keyboard-container element in the flex direction */
+}
+
+/* Styling for each keyboard-row Element */
+.keyboard-row {
+    display: flex; /* Enable flexbox layout for the keyboard-row elements */
+    flex-direction: row; /* Align items in each keyboard-row element horizontally */
+    justify-content: center;  /* Center justify content in each keyboard-row element in the flex direction */
+    align-items: center; /* Center justify content in each keyboard-row element perpendicular to flex direction */
+    gap: 6px; /* Space between children in each keyboard-row element in the flex direction */
+    margin-bottom: 6px; /* Space between rows */
+}
+
+/* Styling for each keyboard-button Element */
+.keyboard-button {
+    display: flex;  /* Enable flexbox layout for each keyboard-button */
+    flex-direction: row; /* Align content in each keyboard-button horizontally */
+    justify-content: center; /* Center justify content in each keyboard-button in the flex direction */
+    align-items: center; /* Center justify content in each keyboard-button perpendicular to flex direction */
+    height: 64px; /* Set height for each keyboard-button */
+    width: 48px; /* Set width for each keyboard-button */
+    font-weight: bold; /* Enable bold font for each keyboard-button */
+    user-select: none; /* Prevent text selection for each keyboard-button */
+    border-radius: 4px; /* Add curvature to the rectangle shape of each keyboard-button */
+    cursor: pointer; /* Ensures it looks clickable */
+}
+
+/* Alter Styling for each keyboard-button Element with data-state="correct" */
+.keyboard-button[data-state="correct"] {
+    background-color: #538D4E;  /* Set the background colour */
+}
+
+/* Alter Styling for each keyboard-button Element with data-state="present" */
+.keyboard-button[data-state="present"] {
+    background-color: #B59F3B;  /* Set the background colour */
+}
+
+/* Alter Styling for each keyboard-button Element with data-state="absent" */
+.keyboard-button[data-state="absent"] {
+    background-color: #3A3A3C; /* Set the background colour */
+}
+
+/* Alter Styling for each keyboard-button Element with data-state="default" */
+.keyboard-button[data-state="default"] {
+    background-color: #818384; /* Set the background colour */
+}
+
+/* Alter Styling for each keyboard-button Element with data-state="enter" */
+.keyboard-button[data-state="enter"] {
+    width: 72px; /* Set the width */ 
+    font-size: 14px; /* Set the font size*/ 
+    background-color: #818384; /* Set the background colour */ 
+}
+
+/* Alter Styling for each keyboard-button Element with data-state="backspace" */
+.keyboard-button[data-state="backspace"] {
+    width: 72px; /* Set the width */ 
+    background-color: #818384; /* Set the background colour */ 
+}
+
+/* Styling for the SVG of class="icon" */
+.icon {
+    width: 24px; /* Alter the width */ 
+    height: 24px; /* Alter the height */ 
+    fill: white; /* Set the colour of the pen */ 
+}

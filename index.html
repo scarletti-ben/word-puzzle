@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wordle</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <div id="mainframe">
+
+    <!-- 5 by 6 Grid for Guesses -->
+    <div class="grid-container">
+  
+      <div class="grid-row">
+        <div class="grid-square" data-state="default"></div>
+        <div class="grid-square" data-state="default"></div>
+        <div class="grid-square" data-state="default"></div>
+        <div class="grid-square" data-state="default"></div>
+        <div class="grid-square" data-state="default"></div>
+      </div>
+  
+      <div class="grid-row">
+        <div class="grid-square" data-state="default"></div>
+        <div class="grid-square" data-state="default"></div>
+        <div class="grid-square" data-state="default"></div>
+        <div class="grid-square" data-state="default"></div>
+        <div class="grid-square" data-state="default"></div>
+      </div>
+  
+      <div class="grid-row">
+        <div class="grid-square" data-state="default"></div>
+        <div class="grid-square" data-state="default"></div>
+        <div class="grid-square" data-state="default"></div>
+        <div class="grid-square" data-state="default"></div>
+        <div class="grid-square" data-state="default"></div>
+      </div>
+  
+      <div class="grid-row">
+        <div class="grid-square" data-state="default"></div>
+        <div class="grid-square" data-state="default"></div>
+        <div class="grid-square" data-state="default"></div>
+        <div class="grid-square" data-state="default"></div>
+        <div class="grid-square" data-state="default"></div>
+      </div>
+  
+      <div class="grid-row">
+        <div class="grid-square" data-state="default"></div>
+        <div class="grid-square" data-state="default"></div>
+        <div class="grid-square" data-state="default"></div>
+        <div class="grid-square" data-state="default"></div>
+        <div class="grid-square" data-state="default"></div>
+      </div>
+  
+      <div class="grid-row">
+        <div class="grid-square" data-state="default"></div>
+        <div class="grid-square" data-state="default"></div>
+        <div class="grid-square" data-state="default"></div>
+        <div class="grid-square" data-state="default"></div>
+        <div class="grid-square" data-state="default"></div>
+      </div>
+  
+    </div>
+  
+    <!-- 3 Row Keyboard for Guessing -->
+    <div class="keyboard-container">
+  
+      <div class="keyboard-row">
+        <button class="keyboard-button" type="button" onclick="pressed(this)" data-state="default">Q</button>
+        <button class="keyboard-button" type="button" onclick="pressed(this)" data-state="default">W</button>
+        <button class="keyboard-button" type="button" onclick="pressed(this)" data-state="default">E</button>
+        <button class="keyboard-button" type="button" onclick="pressed(this)" data-state="default">R</button>
+        <button class="keyboard-button" type="button" onclick="pressed(this)" data-state="default">T</button>
+        <button class="keyboard-button" type="button" onclick="pressed(this)" data-state="default">Y</button>
+        <button class="keyboard-button" type="button" onclick="pressed(this)" data-state="default">U</button>
+        <button class="keyboard-button" type="button" onclick="pressed(this)" data-state="default">I</button>
+        <button class="keyboard-button" type="button" onclick="pressed(this)" data-state="default">O</button>
+        <button class="keyboard-button" type="button" onclick="pressed(this)" data-state="default">P</button>
+      </div>
+  
+      <div class="keyboard-row">
+        <button class="keyboard-button" type="button" onclick="pressed(this)" data-state="default">A</button>
+        <button class="keyboard-button" type="button" onclick="pressed(this)" data-state="default">S</button>
+        <button class="keyboard-button" type="button" onclick="pressed(this)" data-state="default">D</button>
+        <button class="keyboard-button" type="button" onclick="pressed(this)" data-state="default">F</button>
+        <button class="keyboard-button" type="button" onclick="pressed(this)" data-state="default">G</button>
+        <button class="keyboard-button" type="button" onclick="pressed(this)" data-state="default">H</button>
+        <button class="keyboard-button" type="button" onclick="pressed(this)" data-state="default">J</button>
+        <button class="keyboard-button" type="button" onclick="pressed(this)" data-state="default">K</button>
+        <button class="keyboard-button" type="button" onclick="pressed(this)" data-state="default">L</button>
+      </div>
+  
+      <div class="keyboard-row">
+        <button class="keyboard-button" type="button" onclick="pressed(this)" data-state="enter">ENTER</button>
+        <button class="keyboard-button" type="button" onclick="pressed(this)" data-state="default">Z</button>
+        <button class="keyboard-button" type="button" onclick="pressed(this)" data-state="default">X</button>
+        <button class="keyboard-button" type="button" onclick="pressed(this)" data-state="default">C</button>
+        <button class="keyboard-button" type="button" onclick="pressed(this)" data-state="default">V</button>
+        <button class="keyboard-button" type="button" onclick="pressed(this)" data-state="default">B</button>
+        <button class="keyboard-button" type="button" onclick="pressed(this)" data-state="default">N</button>
+        <button class="keyboard-button" type="button" onclick="pressed(this)" data-state="default">M</button>
+        <button class="keyboard-button" type="button" onclick="pressed(this)" data-state="backspace">
+          <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M22 3H7c-.69 0-1.23.35-1.59.88L0 12l5.41 8.11c.36.53.9.89 1.59.89h15c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H7.07L2.4 12l4.66-7H22v14zm-11.59-2L14 13.41 17.59 17 19 15.59 15.41 12 19 8.41 17.59 7 14 10.59 10.41 7 9 8.41 12.59 12 9 15.59z"></path>
+          </svg>
+        </button>
+      </div>
+  
+    </div>
+
+  <script src="script.js"></script>
+
+</body>
+
+</html>
