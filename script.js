@@ -1,5 +1,5 @@
 // SETTINGS
-const DEBUGGING = 0;
+const DEBUGGING = 1;
 
 // Constants
 const maxColumn = 5;
@@ -120,8 +120,12 @@ function check() {
 
         // Check letters in guess against those in the answer
         if (answer.includes(letter)) {
+
+            console.log(`${letter} is in the answer`)
             
             if (answer[index] === letter) {
+
+                console.log(`${letter} is correct`)
 
                 // Set the data-state attribute to "correct" for the grid-square
                 gridSquare.setAttribute('data-state', 'correct');
@@ -130,6 +134,8 @@ function check() {
                 upgrade(letter, 'correct')
 
             } else {
+
+                console.log(`${letter} is present`)
 
                 // Set the data-state attribute to "present" for the grid-square
                 gridSquare.setAttribute('data-state', 'present');
@@ -141,6 +147,8 @@ function check() {
 
         }
         else {
+
+            console.log(`${letter} is not in the answer`)
 
             // Set the data-state attribute to "absent" for the grid-square
             gridSquare.setAttribute('data-state', 'absent');
@@ -156,17 +164,26 @@ function check() {
     guessSet = new Set(guess);
     console.log(guessSet)
     for (let letter of guessSet) {
+
         let oversupplyCounter = (guess.split(letter).length - 1) - (answer.split(letter).length - 1);
-    
-        // Iterate over gridArray in reverse
-        for (let index = gridArray.length - 1; index >= 0; index--) {
-            let gridSquare = gridArray[index];
-            if (gridSquare.innerText === letter && gridSquare.dataset.state === "present") {
-                gridSquare.setAttribute('data-state', 'absent');
-                oversupplyCounter--;
-            }
-            if (oversupplyCounter <= 0) break;
-        }
+        
+        console.log(`Oversupply : ${oversupplyCounter}`)
+
+        if (answer.includes(letter)){
+
+            // Iterate over gridArray in reverse
+            for (let index = gridArray.length - 1; index >= 0; index--) {
+                if (oversupplyCounter < 1) break;
+                console.log(letter)
+                let gridSquare = gridArray[index];
+                if (gridSquare.innerText === letter && gridSquare.dataset.state === "present") {
+                    gridSquare.setAttribute('data-state', 'absent');
+                    oversupplyCounter--;
+                };
+            };
+
+        };
+
     }
     
     return true
@@ -248,6 +265,7 @@ async function init() {
     if (DEBUGGING) {
         answer = 'SHOES'
         answer = 'SHOWN'
+        answer = 'SPILT'
         alert(`The answer is ${answer}`)
     }
     
