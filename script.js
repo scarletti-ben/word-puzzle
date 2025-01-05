@@ -1,5 +1,5 @@
 // SETTINGS
-const DEBUGGING = 1;
+const DEBUGGING = 0;
 
 // Constants
 const maxColumn = 5;
@@ -166,7 +166,7 @@ function check() {
     for (let letter of guessSet) {
 
         let oversupplyCounter = (guess.split(letter).length - 1) - (answer.split(letter).length - 1);
-        
+
         console.log(`Oversupply : ${oversupplyCounter}`)
 
         if (answer.includes(letter)){
