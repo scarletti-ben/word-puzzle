@@ -1,5 +1,5 @@
 // SETTINGS
-const DEBUGGING = 0;
+const DEBUGGING = 1;
 
 // Constants
 const maxColumn = 5;
@@ -82,9 +82,11 @@ function check() {
 
     // Ensure the asynchronous loading of dictionary has finished
     if (!answer) {
-        console.log("Page still loading, answer has not been set yet");
+        let message = "Page still loading, answer has not been set yet"
+        console.log(message);
+        showToast(message)
         answer = dictionary[Math.floor(Math.random() * dictionary.length)];
-        return false;
+        return "error";
     }
 
     const gridRow = document.querySelector(`.grid-row:nth-child(${currentRow})`);
@@ -99,7 +101,7 @@ function check() {
         let message = "Not enough letters"
         console.log(message);
         showToast(message)
-        return false
+        return "error"
     }
 
     // Declare guess as a block-level constant and use string join for all letters
@@ -110,7 +112,7 @@ function check() {
         let message = `${guess} not in dictionary`
         console.log(message);
         showToast(message)
-        return false
+        return "error"
     }
     else {
         console.log(`The word ${guess} is in the dictionary`);
@@ -189,8 +191,14 @@ function check() {
         };
 
     }
-    
-    return true
+
+    // Send appropriate return code
+    if (guess == answer) {
+        return "complete"
+    }
+    else {
+        return "continue"
+    }
 
 }
 
@@ -205,12 +213,21 @@ function pressed(button) {
 
     if (buttonValue == "ENTER") {
 
-        // Check the current row
-        if (check()) {
+        let result = check()
+
+        if (result !== "error") {
+
             // Increment the row and reset the column
             currentRow++;
             currentColumn = 1;
 
+        }
+
+        if (result === "complete") {
+            let message = 'Congratulations!'
+            console.log(message);
+            showToast(message)
+            return
         }
 
     }
