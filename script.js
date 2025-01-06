@@ -1,5 +1,5 @@
 // SETTINGS
-const DEBUGGING = 1;
+const DEBUGGING = 0;
 
 // Constants
 const maxColumn = 5;
