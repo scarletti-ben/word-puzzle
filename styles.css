@@ -182,6 +182,13 @@ body, html {
   cursor: pointer;
 }
 
+.bar-button {
+  user-select: none;
+  background: rgba(0, 0, 0, 0);
+  border: none;
+  cursor: pointer;
+}
+
 #toaster {
   width: 240px;
   height: 60px;
