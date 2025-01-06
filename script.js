@@ -60,7 +60,7 @@ async function populateAnswers() {
 function upgrade(letter, suggestedState) {
     // Set the data-state attribute to "present" for the matching keyboard-button
     let finalState;
-    const container = document.querySelector('.keyboard-container');
+    const container = document.querySelector('#keyboard-container');
     const buttons = container.querySelectorAll('.keyboard-button');
     let keyboardButton = Array.from(buttons).find(button => button.innerText === letter);
     let currentState = keyboardButton.dataset.state;
@@ -79,6 +79,14 @@ function upgrade(letter, suggestedState) {
 
 // Function to check the current guess
 function check() {
+
+    // Dictionary loaded check
+    if (dictionary.length == 0) {
+        let message = "Dictionary not loaded (CORS)"
+        console.log(message);
+        showToast(message)
+        return "error"
+    }
 
     // Ensure the asynchronous loading of dictionary has finished
     if (!answer) {
@@ -301,11 +309,12 @@ async function init() {
         answer = 'SHOES'
         answer = 'SHOWN'
         answer = 'SPILT'
-        alert(`The answer is ${answer}`)
+        let message = `The answer is ${answer}`
+        alert(message)
+        showToast(message)
     }
     
 }
-
 
 // Add listener to call init function when the DOM has loaded
 document.addEventListener('DOMContentLoaded', init);

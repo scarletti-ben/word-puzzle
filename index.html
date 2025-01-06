@@ -12,108 +12,119 @@
 <body>
 
   <!-- Toaster for Alert Messages -->
-  <div id="toaster" style="visibility: hidden;"></div>
+  <div id="toaster" style="visibility: hidden;" class="flex-h"></div>
 
-  <div id="mainframe">
+  <div id="page">
+    
+    <div id="bar" class="flex-h">
+      <svg xmlns="http://www.w3.org/2000/svg" height="32" viewBox="-4 -4 32 32" width="32" class="icon">
+        <path d="M3.93428 18.2929C3.61506 18.2929 3.34567 18.1831 3.1261 17.9636C2.90654 17.744 2.79675 17.4746 2.79675 17.1554C2.79675 16.8362 2.90654 16.5668 3.1261 16.3473C3.34567 16.1277 3.61506 16.0179 3.93428 16.0179H20.0658C20.385 16.0179 20.6544 16.1277 20.874 16.3473C21.0935 16.5668 21.2033 16.8362 21.2033 17.1554C21.2033 17.4746 21.0935 17.744 20.874 17.9636C20.6544 18.1831 20.385 18.2929 20.0658 18.2929H3.93428ZM3.93428 13.1375C3.61506 13.1375 3.34567 13.0277 3.1261 12.8081C2.90654 12.5886 2.79675 12.3192 2.79675 12C2.79675 11.6808 2.90654 11.4114 3.1261 11.1918C3.34567 10.9723 3.61506 10.8625 3.93428 10.8625H20.0658C20.385 10.8625 20.6544 10.9723 20.874 11.1918C21.0935 11.4114 21.2033 11.6808 21.2033 12C21.2033 12.3192 21.0935 12.5886 20.874 12.8081C20.6544 13.0277 20.385 13.1375 20.0658 13.1375H3.93428ZM3.93428 7.98206C3.61506 7.98206 3.34567 7.87227 3.1261 7.65271C2.90654 7.43314 2.79675 7.16375 2.79675 6.84453C2.79675 6.52533 2.90654 6.25595 3.1261 6.03638C3.34567 5.81681 3.61506 5.70703 3.93428 5.70703H20.0658C20.385 5.70703 20.6544 5.81681 20.874 6.03638C21.0935 6.25595 21.2033 6.52533 21.2033 6.84453C21.2033 7.16375 21.0935 7.43314 20.874 7.65271C20.6544 7.87227 20.385 7.98206 20.0658 7.98206H3.93428Z">
+        </path>
+      </svg>
+    </div>
 
-    <!-- 5 by 6 Grid for Guesses -->
-    <div class="grid-container">
+    <div id="mainframe">
   
-      <div class="grid-row">
-        <div class="grid-square" data-state="default"></div>
-        <div class="grid-square" data-state="default"></div>
-        <div class="grid-square" data-state="default"></div>
-        <div class="grid-square" data-state="default"></div>
-        <div class="grid-square" data-state="default"></div>
+      <!-- 5 by 6 Grid for Guesses -->
+      <div id="grid-container" class="flex-v">
+    
+        <div class="grid-row flex-h">
+          <div class="grid-square flex-h" data-state="default"></div>
+          <div class="grid-square flex-h" data-state="default"></div>
+          <div class="grid-square flex-h" data-state="default"></div>
+          <div class="grid-square flex-h" data-state="default"></div>
+          <div class="grid-square flex-h" data-state="default"></div>
+        </div>
+    
+        <div class="grid-row flex-h">
+          <div class="grid-square flex-h" data-state="default"></div>
+          <div class="grid-square flex-h" data-state="default"></div>
+          <div class="grid-square flex-h" data-state="default"></div>
+          <div class="grid-square flex-h" data-state="default"></div>
+          <div class="grid-square flex-h" data-state="default"></div>
+        </div>
+    
+        <div class="grid-row flex-h">
+          <div class="grid-square flex-h" data-state="default"></div>
+          <div class="grid-square flex-h" data-state="default"></div>
+          <div class="grid-square flex-h" data-state="default"></div>
+          <div class="grid-square flex-h" data-state="default"></div>
+          <div class="grid-square flex-h" data-state="default"></div>
+        </div>
+    
+        <div class="grid-row flex-h">
+          <div class="grid-square flex-h" data-state="default"></div>
+          <div class="grid-square flex-h" data-state="default"></div>
+          <div class="grid-square flex-h" data-state="default"></div>
+          <div class="grid-square flex-h" data-state="default"></div>
+          <div class="grid-square flex-h" data-state="default"></div>
+        </div>
+    
+        <div class="grid-row flex-h">
+          <div class="grid-square flex-h" data-state="default"></div>
+          <div class="grid-square flex-h" data-state="default"></div>
+          <div class="grid-square flex-h" data-state="default"></div>
+          <div class="grid-square flex-h" data-state="default"></div>
+          <div class="grid-square flex-h" data-state="default"></div>
+        </div>
+    
+        <div class="grid-row flex-h">
+          <div class="grid-square flex-h" data-state="default"></div>
+          <div class="grid-square flex-h" data-state="default"></div>
+          <div class="grid-square flex-h" data-state="default"></div>
+          <div class="grid-square flex-h" data-state="default"></div>
+          <div class="grid-square flex-h" data-state="default"></div>
+        </div>
+    
       </div>
-  
-      <div class="grid-row">
-        <div class="grid-square" data-state="default"></div>
-        <div class="grid-square" data-state="default"></div>
-        <div class="grid-square" data-state="default"></div>
-        <div class="grid-square" data-state="default"></div>
-        <div class="grid-square" data-state="default"></div>
+    
+      <!-- 3 Row Keyboard for Guessing -->
+      <div id="keyboard-container" class="flex-v">
+    
+        <div class="keyboard-row flex-h">
+          <button class="keyboard-button flex-h" type="button" onclick="pressed(this)" data-state="default">Q</button>
+          <button class="keyboard-button flex-h" type="button" onclick="pressed(this)" data-state="default">W</button>
+          <button class="keyboard-button flex-h" type="button" onclick="pressed(this)" data-state="default">E</button>
+          <button class="keyboard-button flex-h" type="button" onclick="pressed(this)" data-state="default">R</button>
+          <button class="keyboard-button flex-h" type="button" onclick="pressed(this)" data-state="default">T</button>
+          <button class="keyboard-button flex-h" type="button" onclick="pressed(this)" data-state="default">Y</button>
+          <button class="keyboard-button flex-h" type="button" onclick="pressed(this)" data-state="default">U</button>
+          <button class="keyboard-button flex-h" type="button" onclick="pressed(this)" data-state="default">I</button>
+          <button class="keyboard-button flex-h" type="button" onclick="pressed(this)" data-state="default">O</button>
+          <button class="keyboard-button flex-h" type="button" onclick="pressed(this)" data-state="default">P</button>
+        </div>
+    
+        <div class="keyboard-row flex-h">
+          <button class="keyboard-button flex-h" type="button" onclick="pressed(this)" data-state="default">A</button>
+          <button class="keyboard-button flex-h" type="button" onclick="pressed(this)" data-state="default">S</button>
+          <button class="keyboard-button flex-h" type="button" onclick="pressed(this)" data-state="default">D</button>
+          <button class="keyboard-button flex-h" type="button" onclick="pressed(this)" data-state="default">F</button>
+          <button class="keyboard-button flex-h" type="button" onclick="pressed(this)" data-state="default">G</button>
+          <button class="keyboard-button flex-h" type="button" onclick="pressed(this)" data-state="default">H</button>
+          <button class="keyboard-button flex-h" type="button" onclick="pressed(this)" data-state="default">J</button>
+          <button class="keyboard-button flex-h" type="button" onclick="pressed(this)" data-state="default">K</button>
+          <button class="keyboard-button flex-h" type="button" onclick="pressed(this)" data-state="default">L</button>
+        </div>
+    
+        <div class="keyboard-row flex-h">
+          <button class="keyboard-button flex-h" type="button" onclick="pressed(this)" data-state="enter">ENTER</button>
+          <button class="keyboard-button flex-h" type="button" onclick="pressed(this)" data-state="default">Z</button>
+          <button class="keyboard-button flex-h" type="button" onclick="pressed(this)" data-state="default">X</button>
+          <button class="keyboard-button flex-h" type="button" onclick="pressed(this)" data-state="default">C</button>
+          <button class="keyboard-button flex-h" type="button" onclick="pressed(this)" data-state="default">V</button>
+          <button class="keyboard-button flex-h" type="button" onclick="pressed(this)" data-state="default">B</button>
+          <button class="keyboard-button flex-h" type="button" onclick="pressed(this)" data-state="default">N</button>
+          <button class="keyboard-button flex-h" type="button" onclick="pressed(this)" data-state="default">M</button>
+          <button class="keyboard-button" type="button" onclick="pressed(this)" data-state="backspace">
+            <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+              <path d="M22 3H7c-.69 0-1.23.35-1.59.88L0 12l5.41 8.11c.36.53.9.89 1.59.89h15c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H7.07L2.4 12l4.66-7H22v14zm-11.59-2L14 13.41 17.59 17 19 15.59 15.41 12 19 8.41 17.59 7 14 10.59 10.41 7 9 8.41 12.59 12 9 15.59z"></path>
+            </svg>
+          </button>
+        </div>
+    
       </div>
-  
-      <div class="grid-row">
-        <div class="grid-square" data-state="default"></div>
-        <div class="grid-square" data-state="default"></div>
-        <div class="grid-square" data-state="default"></div>
-        <div class="grid-square" data-state="default"></div>
-        <div class="grid-square" data-state="default"></div>
-      </div>
-  
-      <div class="grid-row">
-        <div class="grid-square" data-state="default"></div>
-        <div class="grid-square" data-state="default"></div>
-        <div class="grid-square" data-state="default"></div>
-        <div class="grid-square" data-state="default"></div>
-        <div class="grid-square" data-state="default"></div>
-      </div>
-  
-      <div class="grid-row">
-        <div class="grid-square" data-state="default"></div>
-        <div class="grid-square" data-state="default"></div>
-        <div class="grid-square" data-state="default"></div>
-        <div class="grid-square" data-state="default"></div>
-        <div class="grid-square" data-state="default"></div>
-      </div>
-  
-      <div class="grid-row">
-        <div class="grid-square" data-state="default"></div>
-        <div class="grid-square" data-state="default"></div>
-        <div class="grid-square" data-state="default"></div>
-        <div class="grid-square" data-state="default"></div>
-        <div class="grid-square" data-state="default"></div>
-      </div>
-  
-    </div>
-  
-    <!-- 3 Row Keyboard for Guessing -->
-    <div class="keyboard-container">
-  
-      <div class="keyboard-row">
-        <button class="keyboard-button" type="button" onclick="pressed(this)" data-state="default">Q</button>
-        <button class="keyboard-button" type="button" onclick="pressed(this)" data-state="default">W</button>
-        <button class="keyboard-button" type="button" onclick="pressed(this)" data-state="default">E</button>
-        <button class="keyboard-button" type="button" onclick="pressed(this)" data-state="default">R</button>
-        <button class="keyboard-button" type="button" onclick="pressed(this)" data-state="default">T</button>
-        <button class="keyboard-button" type="button" onclick="pressed(this)" data-state="default">Y</button>
-        <button class="keyboard-button" type="button" onclick="pressed(this)" data-state="default">U</button>
-        <button class="keyboard-button" type="button" onclick="pressed(this)" data-state="default">I</button>
-        <button class="keyboard-button" type="button" onclick="pressed(this)" data-state="default">O</button>
-        <button class="keyboard-button" type="button" onclick="pressed(this)" data-state="default">P</button>
-      </div>
-  
-      <div class="keyboard-row">
-        <button class="keyboard-button" type="button" onclick="pressed(this)" data-state="default">A</button>
-        <button class="keyboard-button" type="button" onclick="pressed(this)" data-state="default">S</button>
-        <button class="keyboard-button" type="button" onclick="pressed(this)" data-state="default">D</button>
-        <button class="keyboard-button" type="button" onclick="pressed(this)" data-state="default">F</button>
-        <button class="keyboard-button" type="button" onclick="pressed(this)" data-state="default">G</button>
-        <button class="keyboard-button" type="button" onclick="pressed(this)" data-state="default">H</button>
-        <button class="keyboard-button" type="button" onclick="pressed(this)" data-state="default">J</button>
-        <button class="keyboard-button" type="button" onclick="pressed(this)" data-state="default">K</button>
-        <button class="keyboard-button" type="button" onclick="pressed(this)" data-state="default">L</button>
-      </div>
-  
-      <div class="keyboard-row">
-        <button class="keyboard-button" type="button" onclick="pressed(this)" data-state="enter">ENTER</button>
-        <button class="keyboard-button" type="button" onclick="pressed(this)" data-state="default">Z</button>
-        <button class="keyboard-button" type="button" onclick="pressed(this)" data-state="default">X</button>
-        <button class="keyboard-button" type="button" onclick="pressed(this)" data-state="default">C</button>
-        <button class="keyboard-button" type="button" onclick="pressed(this)" data-state="default">V</button>
-        <button class="keyboard-button" type="button" onclick="pressed(this)" data-state="default">B</button>
-        <button class="keyboard-button" type="button" onclick="pressed(this)" data-state="default">N</button>
-        <button class="keyboard-button" type="button" onclick="pressed(this)" data-state="default">M</button>
-        <button class="keyboard-button" type="button" onclick="pressed(this)" data-state="backspace">
-          <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-            <path d="M22 3H7c-.69 0-1.23.35-1.59.88L0 12l5.41 8.11c.36.53.9.89 1.59.89h15c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H7.07L2.4 12l4.66-7H22v14zm-11.59-2L14 13.41 17.59 17 19 15.59 15.41 12 19 8.41 17.59 7 14 10.59 10.41 7 9 8.41 12.59 12 9 15.59z"></path>
-          </svg>
-        </button>
-      </div>
-  
-    </div>
+      
+  </div>
 
   <script src="script.js"></script>
 

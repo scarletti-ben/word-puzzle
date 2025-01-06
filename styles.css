@@ -1,186 +1,178 @@
-/* Styling for the HTML and Body */
-html, body {
-  margin: 0; /* Remove default margin, mrgin is external spacing between the content border and other content */
-  padding: 0; /* Remove default padding, padding is internal spacing between content and its border */
-  background-color: #121213; /* Set background colour */
-  color: white; /* Set font colour */
-  height: 100%; /* Ensure the body takes up the full available height of the HTML */
-  font-family: Tahoma, sans-serif;  /* Set font family, backup to default sans-serif */
-  font-size: 20px;  /* Set font size */
-  font-weight: 700; /* Set font weight to bold */
-  overflow-x: hidden; /* Prevent horizontal scrolling if needed */
+:root   {
+  --debug-outline: 0px;
+  --colour-zero: rgba(255, 255, 255, 1.0);
+  --colour-one: rgb(18, 18, 19);
+  --colour-two: rgb(255, 255, 255);
+  --colour-three: rgb(129, 131, 132);
+  --colour-four: rgb(58, 58, 60);
+  --colour-five: rgb(86, 87, 88);
+  --colour-six: rgb(83, 141, 78);
+  --colour-seven: rgb(181, 159, 59);
+  --colour-eight: rgb(0, 0, 0);
 }
 
-/* Styling for the Body */
-body {
-  display: flex; /* Enable flexbox layout for the body */
-  flex-direction: column; /* Align children in the body vertically */
+body, html {
+  margin: 0;
+  padding: 0;
+  background-color: var(--colour-one);
 }
 
-/* Toaster Element for Alert Messages */
+* {
+  font-family: Tahoma, sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  box-sizing: border-box;
+  color: var(--colour-two);
+}
+
+/* ! ----- Hide Scrollbar ----- ! */
+#page {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  overflow-y: scroll;
+}
+#page::-webkit-scrollbar {
+  display: none;
+}
+/* ! ----- Hide Scrollbar ----- ! */
+
+.flex-h {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-v {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#page {
+  height: 100vh;
+  width: 100vw;
+  box-shadow: inset 0 0 0 var(--debug-outline) rgb(255, 0, 0);
+}
+
+#bar {
+  padding: 16px;
+  height: 8vh;
+  justify-content: left;
+  box-shadow: inset 0 -1px 0 0px var(--colour-four);
+}
+
+#mainframe {
+  height: 100vh;
+  overflow-y: hidden;
+  box-shadow: inset 0 0 0 var(--debug-outline) rgb(0, 0, 255);
+}
+
+#grid-container {
+  margin-top: 4px;
+  margin-bottom: 4px;
+  box-shadow: inset 0 0 0 var(--debug-outline) rgb(255, 255, 0);
+}
+
+.grid-row {
+  margin: 1px;
+  box-shadow: inset 0 0 0 var(--debug-outline) rgb(255, 0, 255);
+}
+
+.grid-square {
+  font-size: 20px;
+  height: 52px;
+  width: 52px;
+  margin: 2px;
+  user-select: none;
+}
+
+.grid-square[data-state="correct"] {
+  background-color: var(--colour-six);
+}
+
+.grid-square[data-state="present"] {
+  background-color: var(--colour-seven);
+}
+
+.grid-square[data-state="absent"] {
+  background-color: var(--colour-four);
+}
+
+.grid-square[data-state="active"] {
+  box-shadow: inset 0 0 0 2px var(--colour-five);
+}
+
+.grid-square[data-state="default"] {
+  box-shadow: inset 0 0 0 2px var(--colour-four);
+}
+
+#keyboard-container {
+  box-shadow: inset 0 0 0 var(--debug-outline) rgb(0, 255, 255);
+}
+
+.keyboard-row {
+  margin: 1px;
+  box-shadow: inset 0 0 0 var(--debug-outline) rgb(255, 128, 0);
+}
+
+.keyboard-button {
+  height: 58px;
+  width: 42px;
+  margin: 3px;
+  font-size: 20px;
+  user-select: none;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  background: rgb(129, 131, 132);
+  box-shadow: inset 0 0 0 var(--debug-outline) var(--colour-four);
+}
+
+.keyboard-button[data-state="correct"] {
+  background-color: var(--colour-six);
+}
+
+.keyboard-button[data-state="present"] {
+  background-color: var(--colour-seven);
+}
+
+.keyboard-button[data-state="absent"] {
+  background-color: var(--colour-four);
+}
+
+.keyboard-button[data-state="default"] {
+  background-color: var(--colour-three);
+}
+
+.keyboard-button[data-state="enter"] {
+  width: calc(42px * 1.5 + 3px);
+  font-size: 14px;
+  background-color: var(--colour-three);
+}
+
+.keyboard-button[data-state="backspace"] {
+  width: calc(42px * 1.5 + 3px);
+  background-color: var(--colour-three);
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+  fill: var(--colour-two);
+}
+
 #toaster {
   width: 240px;
   height: 60px;
-  box-sizing: border-box;
-  padding: 16px;
-  box-shadow: inset 0 0 0 2px white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(255, 255, 255, 1.0);
-  color: rgb(0, 0, 0);
-  flex-direction: column;
+  padding: 16px;  
+  color: var(--colour-eight);
+  background-color: var(--colour-zero);
   border-radius: 8px;
   font-size: 14px;
-  opacity: 1;
-  position: fixed; /* Make the toaster fixed within the viewport */
+  position: fixed;
   left: 50%;
   top: 5%;
   transform: translate(-50%, -0%);
-}
-
-/* Reset Button Styles */
-button {
-    all: unset; /* Reset all styles */
-    display: flex; /* Reapply flexbox layout */
-    justify-content: center;
-    align-items: center;
-}
-
-/* Styling for the Mainframe Container */
-#mainframe {
-    width: 100%; /* Ensures the container takes up the full available width of its parent */
-    max-width: 600px; /* Limits the container's width to a maximum of 600px */
-    padding: 20px; /* Padding space around the entire mainframe container */
-    display: flex; /* Enable flexbox layout for the mainframe container */
-    flex-direction: column; /* Align the children of the mainframe container vertically */
-    justify-content: center; /* Center justify the children of the mainframe container in the flex direction */
-    gap: 6px; /* Space between the children of the mainframe container in the flex direction */
-    margin: 0 auto; /* Center the container horizontally */
-}
-
-/* Styling for the grid-container Element */
-.grid-container {
-    display: flex; /* Enable flexbox layout for the grid-container element */
-    flex-direction: column; /* Align the grid-row children in the grid-container element vertically */
-    justify-content: center; /* Center justify the grid-row children in the grid-container in the flex direction */
-    gap: 6px; /* Space between the grid-row children in the grid-container element in the flex direction */
-}
-
-/* Styling for each grid-row Element */
-.grid-row {
-    display: flex; /* Enable flexbox layout for the grid-row elements */
-    flex-direction: row; /* Align items in each grid-row element horizontally */
-    justify-content: center; /* Center justify content in each grid-row element in the flex direction */
-    align-items: center; /* Center justify content in each grid-row element perpendicular to flex direction */
-    gap: 6px; /* Space between children in each grid-row element in the flex direction */
-}
-
-/* Styling for each grid-square Element */
-.grid-square {
-    display: flex;  /* Enable flexbox layout for each grid-square */
-    flex-direction: row; /* Align content in each grid-square horizontally */
-    justify-content: center; /* Center justify content in each grid-square in the flex direction */
-    align-items: center; /* Center justify content in each grid-square perpendicular to flex direction */
-    height: 60px; /* Set height for each grid-square */
-    width: 60px; /* Set width for each grid-square */
-    font-weight: bold; /* Enable bold font for each grid-square */
-    user-select: none; /* Prevent text selection for each grid-square */
-}
-
-/* Alter Styling for each grid-square Element with data-state="correct" */
-.grid-square[data-state="correct"] {
-    background-color: #538D4E; /* Set the background colour */
-}
-
-/* Alter Styling for each grid-square Element with data-state="present" */
-.grid-square[data-state="present"] {
-    background-color: #B59F3B; /* Set the background colour */
-}
-
-/* Alter Styling for each grid-square Element with data-state="absent" */
-.grid-square[data-state="absent"] {
-    background-color: #3A3A3C; /* Set the background colour */
-}
-
-/* Alter Styling for each grid-square Element with data-state="active" */
-.grid-square[data-state="active"] {
-    box-shadow: inset 0 0 0 2px #565758;  /* Enable inset border without shadow spread */
-}
-
-/* Alter Styling for grid-square with data-state="default" */
-.grid-square[data-state="default"] {
-    box-shadow: inset 0 0 0 2px #3A3A3C;  /* Enable inset border without shadow spread */
-}
-
-/* Styling for the keyboard-container Element */
-.keyboard-container {
-    display: flex; /* Enable flexbox layout for the keyboard-container element */
-    flex-direction: column; /* Align the keyboard-row children in the keyboard-container element vertically */
-    justify-content: center; /* Center justify the keyboard-row children in the keyboard-container in the flex direction */
-    gap: 0px; /* Space between the keyboard-row children in the keyboard-container element in the flex direction */
-}
-
-/* Styling for each keyboard-row Element */
-.keyboard-row {
-    display: flex; /* Enable flexbox layout for the keyboard-row elements */
-    flex-direction: row; /* Align items in each keyboard-row element horizontally */
-    justify-content: center;  /* Center justify content in each keyboard-row element in the flex direction */
-    align-items: center; /* Center justify content in each keyboard-row element perpendicular to flex direction */
-    gap: 6px; /* Space between children in each keyboard-row element in the flex direction */
-    margin-bottom: 6px; /* Space between rows */
-}
-
-/* Styling for each keyboard-button Element */
-.keyboard-button {
-    display: flex;  /* Enable flexbox layout for each keyboard-button */
-    flex-direction: row; /* Align content in each keyboard-button horizontally */
-    justify-content: center; /* Center justify content in each keyboard-button in the flex direction */
-    align-items: center; /* Center justify content in each keyboard-button perpendicular to flex direction */
-    height: 64px; /* Set height for each keyboard-button */
-    width: 48px; /* Set width for each keyboard-button */
-    font-weight: bold; /* Enable bold font for each keyboard-button */
-    user-select: none; /* Prevent text selection for each keyboard-button */
-    border-radius: 4px; /* Add curvature to the rectangle shape of each keyboard-button */
-    cursor: pointer; /* Ensures it looks clickable */
-}
-
-/* Alter Styling for each keyboard-button Element with data-state="correct" */
-.keyboard-button[data-state="correct"] {
-    background-color: #538D4E;  /* Set the background colour */
-}
-
-/* Alter Styling for each keyboard-button Element with data-state="present" */
-.keyboard-button[data-state="present"] {
-    background-color: #B59F3B;  /* Set the background colour */
-}
-
-/* Alter Styling for each keyboard-button Element with data-state="absent" */
-.keyboard-button[data-state="absent"] {
-    background-color: #3A3A3C; /* Set the background colour */
-}
-
-/* Alter Styling for each keyboard-button Element with data-state="default" */
-.keyboard-button[data-state="default"] {
-    background-color: #818384; /* Set the background colour */
-}
-
-/* Alter Styling for each keyboard-button Element with data-state="enter" */
-.keyboard-button[data-state="enter"] {
-    width: 72px; /* Set the width */ 
-    font-size: 14px; /* Set the font size*/ 
-    background-color: #818384; /* Set the background colour */ 
-}
-
-/* Alter Styling for each keyboard-button Element with data-state="backspace" */
-.keyboard-button[data-state="backspace"] {
-    width: 72px; /* Set the width */ 
-    background-color: #818384; /* Set the background colour */ 
-}
-
-/* Styling for the SVG of class="icon" */
-.icon {
-    width: 24px; /* Alter the width */ 
-    height: 24px; /* Alter the height */ 
-    fill: white; /* Set the colour of the pen */ 
 }

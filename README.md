@@ -50,3 +50,18 @@ http://localhost:8000/index.html
 
 - Sort out multi-letter
     - Make sure that keyboard colour isn't set twice if same letter twice in a word OR same letter in a new word, with a lower level than what's already given
+
+# NEW MISCELLANEOUS NOTES
+In a sense you sort of scroll into the full window as `page` has full view height of `100vh` so scrolling into it you'll find the bottom of the page and be left with exactly the content in the `page` container
+
+You can revert GitHub changes and use tags and releases for version control
+
+Rebuilt with CSS multi-classing such that less repeat code was needed
+
+Colour variables
+
+CSS variables
+
+You can change Hex to RGB by clicking CSS colour-picker in VSCode
+
+`box-sizing: border-box;` is the fix for many issues
