@@ -1,27 +1,42 @@
-/* Get Custom Font from Wordle */
-@font-face {
-    font-family: 'KarnakCondensed'; /* Set the font family name */
-    src: url('https://www.nytimes.com/games/wordle/fonts/karnakcondensed-normal-700.woff'); /* Set the url for the font file */
-    font-weight: 700; /* Set the font thickness */
-    font-style: normal; /* Set the font style to normal */
+/* Styling for the HTML and Body */
+html, body {
+  margin: 0; /* Remove default margin, mrgin is external spacing between the content border and other content */
+  padding: 0; /* Remove default padding, padding is internal spacing between content and its border */
+  background-color: #121213; /* Set background colour */
+  color: white; /* Set font colour */
+  height: 100%; /* Ensure the body takes up the full available height of the HTML */
+  font-family: Tahoma, sans-serif;  /* Set font family, backup to default sans-serif */
+  font-size: 20px;  /* Set font size */
+  font-weight: 700; /* Set font weight to bold */
+  overflow-x: hidden; /* Prevent horizontal scrolling if needed */
 }
 
 /* Styling for the Body */
 body {
-    width: 100%; /* Ensure the body takes up the full available width of the viewport */
-    height: 100%; /* Ensure the body takes up the full available height of the viewport */
-    margin: 0; /* Remove default margin around the body, margin is external spacing between the content border and other content */
-    padding: 0; /* Remove default padding around the body, padding is internal spacing between content and its border */
-    transform-origin: top center;  /* Set the origin point for scaling, if enabled, for Google Chrome */
-    transform: scale(1.0); /* Set the scaling, used as a variant of zoom level for Google Chrome */
-    display: flex; /* Enable flexbox layout for the body */
-    flex-direction: column; /* Align children in the body vertically */
-    justify-content: center; /* Center justify children in the body in the flex direction */
-    align-items: center; /* Center justify children in the body perpendicular to flex direction */
-    background-color: #121213; /* Set dark background color for the page */
-    color: white; /* Set light text colour for the page */
-    font-family: 'KarnakCondensed', sans-serif; /* Set the font family using custom font above */
-    font-size: 20px; /* Set font size */
+  display: flex; /* Enable flexbox layout for the body */
+  flex-direction: column; /* Align children in the body vertically */
+}
+
+/* Toaster Element for Alert Messages */
+#toaster {
+  width: 240px;
+  height: 60px;
+  box-sizing: border-box;
+  padding: 16px;
+  box-shadow: inset 0 0 0 2px white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 1.0);
+  color: rgb(0, 0, 0);
+  flex-direction: column;
+  border-radius: 8px;
+  font-size: 14px;
+  opacity: 1;
+  position: fixed; /* Make the toaster fixed within the viewport */
+  left: 50%;
+  top: 5%;
+  transform: translate(-50%, -0%);
 }
 
 /* Reset Button Styles */
@@ -41,6 +56,7 @@ button {
     flex-direction: column; /* Align the children of the mainframe container vertically */
     justify-content: center; /* Center justify the children of the mainframe container in the flex direction */
     gap: 6px; /* Space between the children of the mainframe container in the flex direction */
+    margin: 0 auto; /* Center the container horizontally */
 }
 
 /* Styling for the grid-container Element */

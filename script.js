@@ -96,7 +96,9 @@ function check() {
 
     // Cancel the check if there are not enough letters
     if (count < maxColumn) {
-        console.log("Not enough letters");
+        let message = "Not enough letters"
+        console.log(message);
+        showToast(message)
         return false
     }
 
@@ -105,7 +107,9 @@ function check() {
 
     // Cancel the check if the word is not in the dictionary
     if (!dictionary.includes(guess)) {
-        console.log(`The word ${guess} is not in the dictionary`);
+        let message = `${guess} not in dictionary`
+        console.log(message);
+        showToast(message)
         return false
     }
     else {
@@ -248,6 +252,20 @@ function pressed(button) {
     
 }
 
+// Toasting function to add a temporary toast message
+function showToast(message) {
+    console.log("enter")
+    const toaster = document.getElementById('toaster');
+    toaster.textContent = message;
+    toaster.style.visibility = 'visible';
+
+    // Hide toaster after 3 seconds
+    setTimeout(() => {
+        toaster.style.visibility = 'hidden';
+        toaster.textContent = '';
+    }, 1200);
+}
+
 // Initialisation function to be called when the DOM has loaded
 async function init() {
 
@@ -270,6 +288,7 @@ async function init() {
     }
     
 }
+
 
 // Add listener to call init function when the DOM has loaded
 document.addEventListener('DOMContentLoaded', init);
