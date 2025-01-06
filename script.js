@@ -210,16 +210,36 @@ function check() {
 
 }
 
+// Show answer as an alert / toast
+function showAnswer() {
+    let message = `The answer is ${answer}`
+    showToast(message)
+}
+
+// Get a hint by altering a keyboard button state
+function getHint() {
+    let letter = "Q"
+    const container = document.querySelector('#keyboard-container');
+    const buttons = container.querySelectorAll('.keyboard-button');
+    let keyboardButton = Array.from(buttons).find(button => button.innerText === letter);
+    keyboardButton.setAttribute('data-state', "hinted");
+    let message = `(NOTIMPLEMENTED) Hint: ${letter}`
+    showToast(message)
+}
+
 // Function to be called in HTML via onclick="pressed(this)" to pass button element as argument
 function pressed(button) {
 
     // Declare buttonValue as a block-scoped constant
     const buttonValue = button.innerText;
 
+    // Declar buttonState as a block-scoped constant
+    const buttonState = button.dataset.state;
+
     // Find the grid-square for the current row and column (Python equivalent: grid_rows[currentRow][currentColumn])
     const gridSquare = document.querySelector(`.grid-row:nth-child(${currentRow}) .grid-square:nth-child(${currentColumn})`);
 
-    if (buttonValue == "ENTER") {
+    if (buttonState == "enter") {
 
         let result = check()
 
@@ -239,7 +259,7 @@ function pressed(button) {
         }
 
     }
-    else if (buttonValue.trim() == "") {
+    else if (buttonState == "backspace") {
         
         // Decrement the column
         if (currentColumn > 1) {

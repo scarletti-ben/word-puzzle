@@ -9,6 +9,7 @@
   --colour-six: rgb(83, 141, 78);
   --colour-seven: rgb(181, 159, 59);
   --colour-eight: rgb(0, 0, 0);
+  --colour-nine: rgb(20, 128, 128);
 }
 
 body, html {
@@ -157,10 +158,28 @@ body, html {
   background-color: var(--colour-three);
 }
 
+.keyboard-button[data-state="hinted"] {
+  background-color: var(--colour-nine);
+}
+
 .icon {
   width: 24px;
   height: 24px;
   fill: var(--colour-two);
+}
+
+#hamburger-button {
+  user-select: none;
+  background: rgba(0, 0, 0, 0);
+  border: none;
+  cursor: pointer;
+}
+
+#hint-button {
+  user-select: none;
+  background: rgba(0, 0, 0, 0);
+  border: none;
+  cursor: pointer;
 }
 
 #toaster {
