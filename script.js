@@ -1,5 +1,5 @@
-// SETTINGS
-const DEBUGGING = 0;
+// Settings
+var debugging = 0;
 
 // Constants
 const maxColumn = 5;
@@ -14,8 +14,8 @@ var currentRow = 1;
 var dictionary = [];
 var answers = [];
 
-// Code to run if DEBUGGING level is at a certain level
-if (DEBUGGING > 1) {
+// Code to run if debugging level is at a certain level
+if (debugging > 1) {
 
     // Override console.log function to show alerts
     console.stdlog = console.log.bind(console); 
@@ -297,7 +297,7 @@ async function init() {
     // Set the answer as a random word from the answers list
     answer = answers[Math.floor(Math.random() * answers.length)];
     
-    if (DEBUGGING) {
+    if (debugging) {
         answer = 'SHOES'
         answer = 'SHOWN'
         answer = 'SPILT'
