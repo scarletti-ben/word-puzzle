@@ -66,7 +66,6 @@ body, html {
 
 #mainframe {
   height: 100vh;
-  overflow-y: hidden;
   box-shadow: inset 0 0 0 var(--debug-outline) rgb(0, 0, 255);
 }
 
