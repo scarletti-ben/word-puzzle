@@ -1,5 +1,9 @@
+# Legal Disclaimers
+- This is a recreated design as a personal project for educational purposes, and as such, is not intended for any commercial purposes
+- It is not affiliated with [Wordle](https://www.nytimes.com/games/wordle/index.html) on the `New York Times` website
+
 # Overview
-- This project is not intended for any commercial purpose, it does not contain any source code from the original [Wordle](https://www.nytimes.com/games/wordle/index.html), other than a temporary reference to an `SVG`, I have simply used it as a source to practice `HTML`, `CSS` and `JavaScript`
+- Project to practice `HTML`, `CSS` and `JavaScript`
 - This project is primarily for my own use, and information in this README is likely included purely to remind me of things in future
 
 ## Project Structure
