@@ -1,21 +1,21 @@
 :root   {
   --debug-outline: 0px;
-  --colour-zero: rgba(255, 255, 255, 1.0);
-  --colour-one: rgb(18, 18, 19);
-  --colour-two: rgb(255, 255, 255);
-  --colour-three: rgb(129, 131, 132);
-  --colour-four: rgb(58, 58, 60);
-  --colour-five: rgb(86, 87, 88);
-  --colour-six: rgb(83, 141, 78);
-  --colour-seven: rgb(181, 159, 59);
-  --colour-eight: rgb(0, 0, 0);
-  --colour-nine: rgb(20, 128, 128);
+  --colourA: rgba(255, 255, 255, 1.0);
+  --colourB: rgb(18, 18, 18);
+  --colourC: rgb(255, 255, 255);
+  --colourD: rgb(130, 130, 130);
+  --colourE: rgb(58, 58, 58);
+  --colourF: rgb(88, 88, 88);
+  --colourG: rgb(80, 140, 80);
+  --colourH: rgb(184, 164, 64);
+  --colourI: rgb(0, 0, 0);
+  --colourJ: rgb(24, 124, 124);
 }
 
 body, html {
   margin: 0;
   padding: 0;
-  background-color: var(--colour-one);
+  background-color: var(--colourB);
 }
 
 * {
@@ -23,7 +23,7 @@ body, html {
   font-size: 10px;
   font-weight: 700;
   box-sizing: border-box;
-  color: var(--colour-two);
+  color: var(--colourC);
 }
 
 /* ! ----- Hide Scrollbar ----- ! */
@@ -61,7 +61,7 @@ body, html {
   padding: 16px;
   height: 8vh;
   justify-content: left;
-  box-shadow: inset 0 -1px 0 0px var(--colour-four);
+  box-shadow: inset 0 -1px 0 0px var(--colourE);
 }
 
 #mainframe {
@@ -89,23 +89,23 @@ body, html {
 }
 
 .grid-square[data-state="correct"] {
-  background-color: var(--colour-six);
+  background-color: var(--colourG);
 }
 
 .grid-square[data-state="present"] {
-  background-color: var(--colour-seven);
+  background-color: var(--colourH);
 }
 
 .grid-square[data-state="absent"] {
-  background-color: var(--colour-four);
+  background-color: var(--colourE);
 }
 
 .grid-square[data-state="active"] {
-  box-shadow: inset 0 0 0 2px var(--colour-five);
+  box-shadow: inset 0 0 0 2px var(--colourF);
 }
 
 .grid-square[data-state="default"] {
-  box-shadow: inset 0 0 0 2px var(--colour-four);
+  box-shadow: inset 0 0 0 2px var(--colourE);
 }
 
 #keyboard-container {
@@ -127,44 +127,44 @@ body, html {
   border: none;
   cursor: pointer;
   background: rgb(129, 131, 132);
-  box-shadow: inset 0 0 0 var(--debug-outline) var(--colour-four);
+  box-shadow: inset 0 0 0 var(--debug-outline) var(--colourE);
 }
 
 .keyboard-button[data-state="correct"] {
-  background-color: var(--colour-six);
+  background-color: var(--colourG);
 }
 
 .keyboard-button[data-state="present"] {
-  background-color: var(--colour-seven);
+  background-color: var(--colourH);
 }
 
 .keyboard-button[data-state="absent"] {
-  background-color: var(--colour-four);
+  background-color: var(--colourE);
 }
 
 .keyboard-button[data-state="default"] {
-  background-color: var(--colour-three);
+  background-color: var(--colourD);
 }
 
 .keyboard-button[data-state="enter"] {
   width: calc(42px * 1.5 + 3px);
   font-size: 14px;
-  background-color: var(--colour-three);
+  background-color: var(--colourD);
 }
 
 .keyboard-button[data-state="backspace"] {
   width: calc(42px * 1.5 + 3px);
-  background-color: var(--colour-three);
+  background-color: var(--colourD);
 }
 
 .keyboard-button[data-state="hinted"] {
-  background-color: var(--colour-nine);
+  background-color: var(--colourJ);
 }
 
 .icon {
   width: 24px;
   height: 24px;
-  fill: var(--colour-two);
+  fill: var(--colourC);
 }
 
 #hamburger-button {
@@ -192,8 +192,8 @@ body, html {
   width: 240px;
   height: 60px;
   padding: 16px;  
-  color: var(--colour-eight);
-  background-color: var(--colour-zero);
+  color: var(--colourI);
+  background-color: var(--colourA);
   border-radius: 8px;
   font-size: 14px;
   position: fixed;
