@@ -12,6 +12,8 @@
   --colourJ: rgb(24, 124, 124);
 }
 
+
+
 body, html {
   margin: 0;
   padding: 0;
@@ -200,4 +202,26 @@ body, html {
   left: 50%;
   top: 5%;
   transform: translate(-50%, -0%);
+}
+
+@media only screen and (max-width: 600px) {
+  .grid-square {
+    font-size: 16px;
+    height: 42px;
+    width: 42px;
+    margin: 2px;
+    user-select: none;
+  }
+
+  .keyboard-button {  height: 58px;
+    width: 32px;
+    margin: 3px;
+    font-size: 16px;
+    user-select: none;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    background: rgb(129, 131, 132);
+    box-shadow: inset 0 0 0 var(--debug-outline) var(--colourE);
+  }
 }
