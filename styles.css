@@ -12,8 +12,6 @@
   --colourJ: rgb(24, 124, 124);
 }
 
-
-
 body, html {
   margin: 0;
   padding: 0;
@@ -61,14 +59,19 @@ body, html {
 
 #bar {
   padding: 16px;
-  height: 8vh;
+  height: 10vh;
   justify-content: left;
   box-shadow: inset 0 -1px 0 0px var(--colourE);
 }
 
 #mainframe {
   height: 100vh;
+  padding-top: 4vh;
+  padding-bottom: 1vh;
   box-shadow: inset 0 0 0 var(--debug-outline) rgb(0, 0, 255);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 #grid-container {
@@ -205,13 +208,14 @@ body, html {
 }
 
 @media only screen and (max-width: 600px) {
-  .grid-square {
+
+  /* .grid-square {
     font-size: 16px;
     height: 42px;
     width: 42px;
     margin: 2px;
     user-select: none;
-  }
+  } */
 
   .keyboard-button {  height: 58px;
     width: 32px;
@@ -224,4 +228,9 @@ body, html {
     background: rgb(129, 131, 132);
     box-shadow: inset 0 0 0 var(--debug-outline) var(--colourE);
   }
+
+  #page {
+    height: 90vh;
+  }
+
 }
