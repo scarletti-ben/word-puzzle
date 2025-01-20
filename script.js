@@ -311,6 +311,17 @@ function showToast(message) {
     }, 1200);
 }
 
+// Toggle debug outlines for HTML elements
+function toggleDebugOutlines () {
+
+    var root = document.querySelector(':root');
+    var rootStyle = getComputedStyle(root);
+    const currentOutline = rootStyle.getPropertyValue('--debug-outline')
+    const newOutline = currentOutline === '2px' ? '0px' : '2px';
+    root.style.setProperty('--debug-outline', newOutline);
+
+}
+
 // Initialisation function to be called when the DOM has loaded
 async function init() {
 
@@ -339,12 +350,7 @@ async function init() {
         if (event.ctrlKey && event.key === 'F1') {
 
           event.preventDefault();
-
-          var root = document.querySelector(':root');
-          var rootStyle = getComputedStyle(root);
-          const currentOutline = rootStyle.getPropertyValue('--debug-outline')
-          const newOutline = currentOutline === '2px' ? '0px' : '2px';
-          root.style.setProperty('--debug-outline', newOutline);
+          toggleDebugOutlines()
 
         };
     });

@@ -234,6 +234,10 @@ body, html {
     font-size: 16px;
   }
 
+  #mainframe {
+    height: 92vh;
+  }
+
 }
 
 /* Styling when viewport height is 600px or less */
