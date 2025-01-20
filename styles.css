@@ -1,4 +1,4 @@
-:root   {
+:root {
   --debug-outline: 0px;
   --colourA: rgba(255, 255, 255, 1.0);
   --colourB: rgb(18, 18, 18);
@@ -10,12 +10,14 @@
   --colourH: rgb(184, 164, 64);
   --colourI: rgb(0, 0, 0);
   --colourJ: rgb(24, 124, 124);
+  --colourK: rgba(0, 0, 0, 0);
 }
 
 body, html {
   margin: 0;
   padding: 0;
   background-color: var(--colourB);
+  overflow: hidden;
 }
 
 * {
@@ -54,35 +56,46 @@ body, html {
 #page {
   height: 100vh;
   width: 100vw;
-  box-shadow: inset 0 0 0 var(--debug-outline) rgb(255, 0, 0);
+  box-shadow: inset 0 0 0 var(--debug-outline) red;
 }
 
 #bar {
   padding: 16px;
-  height: 10vh;
+  height: 8vh;
   justify-content: left;
   box-shadow: inset 0 -1px 0 0px var(--colourE);
 }
 
 #mainframe {
   height: 100vh;
-  padding-top: 4vh;
+  padding-top: 8vh;
   padding-bottom: 1vh;
-  box-shadow: inset 0 0 0 var(--debug-outline) rgb(0, 0, 255);
+  /* overflow: hidden; */
+  /* POSTIT - If having VH issues, mainframe might be overflowing */
+  box-shadow: inset 0 0 0 var(--debug-outline) blue;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-end;
+  /* justify-content: space-around; */
+  /* justify-content: flex-start; */
+  align-items: center;
+  /* align-items: flex-start; */
 }
 
 #grid-container {
+
+  /* flex-grow: 2; */
+  /* overflow: hidden; */
+  /* max-height: 50vh; */
+
   margin-top: 4px;
   margin-bottom: 4px;
-  box-shadow: inset 0 0 0 var(--debug-outline) rgb(255, 255, 0);
+  box-shadow: inset 0 0 0 var(--debug-outline) yellow;
 }
 
 .grid-row {
   margin: 1px;
-  box-shadow: inset 0 0 0 var(--debug-outline) rgb(255, 0, 255);
+  box-shadow: inset 0 0 0 var(--debug-outline) magenta;
 }
 
 .grid-square {
@@ -114,12 +127,17 @@ body, html {
 }
 
 #keyboard-container {
-  box-shadow: inset 0 0 0 var(--debug-outline) rgb(0, 255, 255);
+
+  /* flex-grow: 2; */
+  /* overflow: hidden; */
+  /* max-height: 50vh; */
+  
+  box-shadow: inset 0 0 0 var(--debug-outline) cyan;
 }
 
 .keyboard-row {
   margin: 1px;
-  box-shadow: inset 0 0 0 var(--debug-outline) rgb(255, 128, 0);
+  box-shadow: inset 0 0 0 var(--debug-outline) orange;
 }
 
 .keyboard-button {
@@ -132,7 +150,7 @@ body, html {
   border: none;
   cursor: pointer;
   background: rgb(129, 131, 132);
-  box-shadow: inset 0 0 0 var(--debug-outline) var(--colourE);
+  box-shadow: inset 0 0 0 var(--debug-outline) brown;
 }
 
 .keyboard-button[data-state="correct"] {
@@ -174,21 +192,21 @@ body, html {
 
 #hamburger-button {
   user-select: none;
-  background: rgba(0, 0, 0, 0);
+  background: var(--colourK);
   border: none;
   cursor: pointer;
 }
 
 #hint-button {
   user-select: none;
-  background: rgba(0, 0, 0, 0);
+  background: var(--colourK);
   border: none;
   cursor: pointer;
 }
 
 .bar-button {
   user-select: none;
-  background: rgba(0, 0, 0, 0);
+  background: var(--colourK);
   border: none;
   cursor: pointer;
 }
@@ -207,30 +225,31 @@ body, html {
   transform: translate(-50%, -0%);
 }
 
+/* Styling when viewport width is 600px or less */
 @media only screen and (max-width: 600px) {
 
-  /* .grid-square {
-    font-size: 16px;
-    height: 42px;
-    width: 42px;
-    margin: 2px;
-    user-select: none;
-  } */
-
-  .keyboard-button {  height: 58px;
+  .keyboard-button {  
+    height: 58px;
     width: 32px;
-    margin: 3px;
     font-size: 16px;
-    user-select: none;
-    border-radius: 4px;
-    border: none;
-    cursor: pointer;
-    background: rgb(129, 131, 132);
-    box-shadow: inset 0 0 0 var(--debug-outline) var(--colourE);
   }
 
-  #mainframe {
-    height: 90vh;
+}
+
+/* Styling when viewport height is 600px or less */
+@media only screen and (max-height: 600px) {
+
+  .grid-square {
+    font-size: 18px;
+    height: 44px;
+    width: 44px;
+  }
+
+  .keyboard-button {
+    height: 54px;
+    width: 42px;
+    margin: 3px;
+    font-size: 18px;
   }
 
 }
