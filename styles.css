@@ -1,5 +1,7 @@
 :root {
+
   --debug-outline: 0px;
+
   --colourA: rgba(255, 255, 255, 1.0);
   --colourB: rgb(18, 18, 18);
   --colourC: rgb(255, 255, 255);
@@ -13,7 +15,9 @@
   --colourK: rgba(0, 0, 0, 0);
 
   --width-page: 100vw;
+  /* --width-page: 100%; */
   --height-page: 100vh;
+  /* --height-page: 100%; */
 
   --height-bar: 8vh;
   --padding-bar: 16px;
@@ -22,6 +26,10 @@
   --padding-mainframe: 8vh 0vh 1vh 0vh;
 
   --margin-grid-container: 4px 0px 4px 0px;
+
+  --margin-grid-row: 1px;
+
+  --margin-keyboard-row: 1px;
   
   --height-keyboard-button: 58px;
   --width-keyboard-button: 42px;
@@ -61,7 +69,9 @@ body, html {
 #page {
   -ms-overflow-style: none;
   scrollbar-width: none;
+  /* overflow-y: hidden; */
   overflow-y: scroll;
+  /* POSTIT */
 }
 #page::-webkit-scrollbar {
   display: none;
@@ -83,9 +93,14 @@ body, html {
 }
 
 #page {
+
   height: var(--height-page);
+  /* min-height: var(--height-page); */
   width: var(--width-page);
   box-shadow: inset 0 0 0 var(--debug-outline) red;
+
+  /* display: flex;
+  flex-direction: column; */
 }
 
 #bar {
@@ -98,7 +113,8 @@ body, html {
 #mainframe {
   height: var(--height-mainframe);
   padding: var(--padding-mainframe);
-  /* overflow: hidden; */
+  overflow: hidden;
+  /* overflow: auto; */
   /* POSTIT - If having VH issues, mainframe might be overflowing */
   box-shadow: inset 0 0 0 var(--debug-outline) blue;
   display: flex;
@@ -108,6 +124,7 @@ body, html {
   /* justify-content: flex-start; */
   align-items: center;
   /* align-items: flex-start; */
+  flex-grow: 1;
 }
 
 #grid-container {
@@ -119,7 +136,7 @@ body, html {
 }
 
 .grid-row {
-  margin: 1px;
+  margin: var(--margin-grid-row);
   box-shadow: inset 0 0 0 var(--debug-outline) magenta;
 }
 
@@ -159,7 +176,7 @@ body, html {
 }
 
 .keyboard-row {
-  margin: 1px;
+  margin: var(--margin-keyboard-row);
   box-shadow: inset 0 0 0 var(--debug-outline) orange;
 }
 
@@ -245,25 +262,31 @@ body, html {
 /* Styling when viewport width is 600px or less */
 @media only screen and (max-width: 600px) {
 
+  #page {
+    min-height: 100vh;
+    /* display: inline-block; */
+  }
+
   .keyboard-button {  
-    height: 58px;
-    width: 32px;
-    font-size: 16px;
+    height: var(--height-keyboard-button);
+    width: calc(var(--width-keyboard-button) - 10px);
+    font-size: calc(var(--fs-keyboard-button) - 4px);
   }
 
   #mainframe {
     height: 92vh;
+    /* display: inline-block; */
   }
 
   .keyboard-button[data-state="enter"] {
-    /* POSTIT - USING min-width */
-    min-width: calc((32px * 1.5) + 3px);
-    font-size: 12px;
+    /* * USING min-width */
+    min-width: calc(((var(--width-keyboard-button) - 10px) * 1.5) + var(--margin-keyboard-button));
+    font-size: calc(var(--fs-keyboard-button) - 8px);
     background-color: var(--colourD);
   }
 
   .keyboard-button[data-state="backspace"] {
-    min-width: calc(32px * 1.5 + 3px);
+    min-width: calc(((var(--width-keyboard-button) - 10px) * 1.5) + var(--margin-keyboard-button));
     background-color: var(--colourD);
   }
 

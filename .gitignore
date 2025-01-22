@@ -1,2 +1,4 @@
-# Ignore test.html file it is for local use
+# Ignore files and directories for local use
 test.html
+TODO
+*rebuild*/

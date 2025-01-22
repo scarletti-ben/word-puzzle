@@ -355,6 +355,29 @@ async function init() {
         };
     });
 
+    // Log window resize
+    window.addEventListener('resize', () => {
+
+        const viewportWidth = window.innerWidth.toFixed(1);
+        const viewportHeight = window.innerHeight.toFixed(1);
+        var message = `VP: ${viewportWidth}x${viewportHeight}`;
+
+        const mainframe = document.getElementById('mainframe');
+        var rect = mainframe.getBoundingClientRect();
+        message += ` | MF: ${rect.width.toFixed(1)}x${rect.height.toFixed(1)}`;
+
+        const page = document.getElementById('page');
+        var rect = page.getBoundingClientRect();
+        message += ` | P: ${rect.width.toFixed(1)}x${rect.height.toFixed(1)}`;
+
+        const bar = document.getElementById('bar');
+        var rect = bar.getBoundingClientRect();
+        message += ` | B: ${rect.width.toFixed(1)}x${rect.height.toFixed(1)}`;
+
+        console.log(message);
+
+      });
+
 }
 
 // Add listener to call init function when the DOM has loaded
