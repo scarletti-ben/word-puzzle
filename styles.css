@@ -218,7 +218,7 @@ html, body {
   align-items: center;
   justify-content: center;
   
-  transition: transform 2s ease-in-out;
+  transition: transform 2s ease-in-out, background-color 0.2s ease-in-out 2.2s;
   
 }
 #grid .row .square:nth-child(1) { 
