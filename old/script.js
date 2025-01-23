@@ -8,12 +8,6 @@ const maxRow = 6;
 // Declare answer variable to be assigned a value later
 var answer;
 
-const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-const letterStates = {};
-for (const letter of alphabet) {
-  letterStates[letter] = "default";
-}
-
 // Variables
 var currentColumn = 1;
 var currentRow = 1;
@@ -62,34 +56,25 @@ async function populateAnswers() {
     }
 }
 
-//
-function determineFinalState(suggestedState, currentState) {
-    let possibleStates = [
-        "correct",
-        "present",
-        "hinted",
-        "absent",
-        "default"
-    ]
-    const currentStateIndex = possibleStates.indexOf(currentState);
-    const suggestedStateIndex = possibleStates.indexOf(suggestedState); 
-    return possibleStates[Math.min(currentStateIndex, suggestedStateIndex)];
-}
-
 // Function to upgrade a keyboard letter button, ensuring it never downgrades
 function upgrade(letter, suggestedState) {
-    // Set the data-state attribute to "present" for the matching key
-    const container = document.querySelector('#keyboard');
-    const buttons = container.querySelectorAll('.key');
+    // Set the data-state attribute to "present" for the matching keyboard-button
+    let finalState;
+    const container = document.querySelector('#keyboard-container');
+    const buttons = container.querySelectorAll('.keyboard-button');
     let keyboardButton = Array.from(buttons).find(button => button.innerText === letter);
     let currentState = keyboardButton.dataset.state;
 
-    let finalState = determineFinalState(suggestedState, currentState);
-    console.log(`Suggested ${suggestedState} / Current ${currentState} / Final ${finalState}`)
-
+    if (suggestedState === "correct" || currentState === "correct"){
+        finalState = "correct";
+    }
+    else if (suggestedState === "present" || currentState === "present") {
+        finalState = "present";
+    }
+    else {
+        finalState = "absent";
+    }
     keyboardButton.setAttribute('data-state', finalState);
-    letterStates[letter] = finalState
-    console.log(letterStates)
 }
 
 // Function to check the current guess
@@ -112,8 +97,8 @@ function check() {
         return "error";
     }
 
-    const gridRow = document.querySelector(`#grid .row:nth-child(${currentRow})`);
-    const gridSquares = gridRow.querySelectorAll('#grid .row .square');
+    const gridRow = document.querySelector(`.grid-row:nth-child(${currentRow})`);
+    const gridSquares = gridRow.querySelectorAll('.grid-square');
     const gridArray = Array.from(gridSquares)
 
     // Get the number of filled squares
@@ -159,7 +144,7 @@ function check() {
                 // Set the data-state attribute to "correct" for the grid-square
                 gridSquare.setAttribute('data-state', 'correct');
 
-                // Set the data-state attribute to "correct" for the matching key
+                // Set the data-state attribute to "correct" for the matching keyboard-button
                 upgrade(letter, 'correct')
 
             } else {
@@ -169,7 +154,7 @@ function check() {
                 // Set the data-state attribute to "present" for the grid-square
                 gridSquare.setAttribute('data-state', 'present');
 
-                // Set the data-state attribute to "present" for the matching key
+                // Set the data-state attribute to "present" for the matching keyboard-button
                 upgrade(letter, 'present')
 
             }
@@ -182,7 +167,7 @@ function check() {
             // Set the data-state attribute to "absent" for the grid-square
             gridSquare.setAttribute('data-state', 'absent');
 
-                // Set the data-state attribute to "absent" for the matching key
+                // Set the data-state attribute to "absent" for the matching keyboard-button
                 upgrade(letter, 'absent')
 
         }
@@ -225,51 +210,16 @@ function check() {
 
 }
 
-// Reload the page
-function reloadPage() {
-    window.location.reload()
-}
-
-// Reload the page and clear cache, if possible
-function reloadPageHard() {
-    window.location.reload(true)
-}
-
-// Show answer as an alert / toast
-function showAnswer() {
-    let message = `The answer is ${answer}`
-    showToast(message)
-}
-
-// Get a hint by altering a keyboard button state
-function getHint() {
-    let message = "error"
-    let defaults = Object.keys(letterStates).filter(key => letterStates[key] === "default");
-    let valid = defaults.filter(letter => answer.includes(letter));
-    if (valid) {
-        let choice = valid[Math.floor(Math.random() * valid.length)]
-        if (choice) {
-            message = `${choice} is in the answer!`
-            upgrade(choice, "hinted")
-        }
-        else {
-            message = "No more possible hints!"
-        }
-    }
-    showToast(message)
-}
-
 // Function to be called in HTML via onclick="pressed(this)" to pass button element as argument
 function pressed(button) {
 
     // Declare buttonValue as a block-scoped constant
     const buttonValue = button.innerText;
 
-    // Find the grid-square for the current row and column (Python equivalent: grid.rows[currentRow][currentColumn])
-    const gridSquare = document.querySelector(`#grid .row:nth-child(${currentRow}) .square:nth-child(${currentColumn})`);
+    // Find the grid-square for the current row and column (Python equivalent: grid_rows[currentRow][currentColumn])
+    const gridSquare = document.querySelector(`.grid-row:nth-child(${currentRow}) .grid-square:nth-child(${currentColumn})`);
 
-    if (button.classList.contains("return")) {
-
+    if (buttonValue == "ENTER") {
 
         let result = check()
 
@@ -289,16 +239,17 @@ function pressed(button) {
         }
 
     }
-    else if (button.classList.contains("backspace")) {
-
+    else if (buttonValue.trim() == "") {
+        
         // Decrement the column
         if (currentColumn > 1) {
             currentColumn--;
         }
 
-        // Find the grid-square for the current row and column (Python equivalent: grid.rows[currentRow][currentColumn])
-        const newGridSquare = document.querySelector(`#grid .row:nth-child(${currentRow}) .square:nth-child(${currentColumn})`);
+        // Find the grid-square for the current row and column (Python equivalent: grid_rows[currentRow][currentColumn])
+        const newGridSquare = document.querySelector(`.grid-row:nth-child(${currentRow}) .grid-square:nth-child(${currentColumn})`);
 
+        
         // Set the data-state attribute to "default" for the new grid-square
         newGridSquare.setAttribute('data-state', 'default');
 
@@ -319,21 +270,16 @@ function pressed(button) {
 
     }
     else {
-        
+
         console.log(`Cannot add ${buttonValue} to grid`);
 
-    }
-
-    if ("vibrate" in navigator) {
-      // Trigger a short vibration (in milliseconds)
-      navigator.vibrate(20);
     }
     
 }
 
 // Toasting function to add a temporary toast message
 function showToast(message) {
-
+    console.log("enter")
     const toaster = document.getElementById('toaster');
     toaster.textContent = message;
     toaster.style.visibility = 'visible';
@@ -345,69 +291,8 @@ function showToast(message) {
     }, 1200);
 }
 
-// Toggle debug outlines for HTML elements
-function toggleDebugOutlines () {
-
-    var root = document.querySelector(':root');
-    var rootStyle = getComputedStyle(root);
-    const currentOutline = rootStyle.getPropertyValue('--debug-outline')
-    const newOutline = currentOutline === '2px' ? '0px' : '2px';
-    root.style.setProperty('--debug-outline', newOutline);
-
-    // Postit
-    // Only works in Chrome on Android :D
-    if ("vibrate" in navigator) {
-      // Trigger a short vibration (in milliseconds)
-      navigator.vibrate(200);  // 200ms vibration
-    }
-
-}
-
-// Toggle scrollbar for an HTML element
-function toggleScrollbar (id) {
-
-    const element = document.getElementById(id);
-    element.classList.toggle('hidden-scrollbar');
-
-}
-
-// Function to return certain element dimensions as a single string
-function getValues() {
-
-    const viewportWidth = window.innerWidth;
-    const viewportHeight = window.innerHeight;
-    var message = `Viewport: ${viewportWidth.toFixed(1)}x${viewportHeight.toFixed(1)}`;
-
-    function addElement(id) {
-        var element = document.getElementById(id);
-        var rect = element.getBoundingClientRect();
-        var w = rect.width
-        var h = rect.height
-        var w2 = (w / viewportWidth).toFixed(2)
-        var h2 = (h / viewportHeight).toFixed(2)
-        message += `\n${id}: ${w.toFixed(1)}x${h.toFixed(1)} => [~${w2}vw, ~${h2}vh]`;
-    }
-
-    addElement('outer')
-    addElement('top')
-    addElement('bottom')
-    addElement('keyboard')
-    addElement('grid')
-
-    return message
-
-}
-
-
 // Initialisation function to be called when the DOM has loaded
 async function init() {
-
-    const keys = document.querySelectorAll('#keyboard .row .key');
-    for (const key of keys) {
-        key.onclick = function() {
-            pressed(key);
-        };
-    }
 
     // Run populateDictionary function to allow access to valid words
     await populateDictionary()
@@ -428,65 +313,7 @@ async function init() {
         alert(message)
         showToast(message)
     }
-
-    document.addEventListener('keydown', function (event) {
     
-        var prevent = true;
-    
-        if (event.key === 'F1') {
-            var message = getValues()
-            alert(message);
-        }
-        else if (event.key === 'F2'){
-            toggleDebugOutlines()
-        }
-        else if (event.key === 'F3'){
-            toggleScrollbar('outer')
-        }
-        else if (event.key === 'F4'){
-            toggleScrollbar('bottom')
-        }
-        else {
-            prevent = false
-        }
-    
-        if (prevent === true) {
-            event.preventDefault()
-        }
-
-    });
-
-    // function throttle(mainFunction, delay) {
-    //   let timerFlag = null; // Variable to keep track of the timer
-    
-    //   // Returning a throttled version 
-    //   return (...args) => {
-    //     if (timerFlag === null) { // If there is no timer currently running
-    //       mainFunction(...args); // Execute the main function 
-    //       timerFlag = setTimeout(() => { // Set a timer to clear the timerFlag after the specified delay
-    //         timerFlag = null; // Clear the timerFlag to allow the main function to be executed again
-    //       }, delay);
-    //     }
-    //   };
-    // }
-
-    // // Smooth scroll to top or bottom of the 'outer' div, smoothly hiding 'top' bar
-    // // Function to be added to window event 'wheel'
-    // function smoothScrollOuter(event) {
-    //   // event.preventDefault();
-    //   const outer = document.getElementById('outer');
-    //   const scrolledUp = event.wheelDelta ? event.wheelDelta > 0 : event.deltaY < 0;
-    //   console.log(`Scrolled Up: ${scrolledUp}`)
-      
-    //   if (scrolledUp) {
-    //     outer.scrollTo({ top: 0, behavior: 'smooth' })
-    //   } else {
-    //     outer.scrollTo({ top: outer.scrollHeight, behavior: 'smooth' })
-    //   }
-      
-    // }
-    // window.addEventListener('wheel', smoothScrollOuter, { passive: false });
-
 }
 
 // Add listener to call init function when the DOM has loaded
