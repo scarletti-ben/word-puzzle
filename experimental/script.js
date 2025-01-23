@@ -20,6 +20,8 @@ var currentRow = 1;
 var dictionary = [];
 var answers = [];
 
+var gameCompleted = false;
+
 // Code to run if debugging level is at a certain level
 if (debugging > 1) {
 
@@ -262,6 +264,18 @@ function getHint() {
 // Function to be called in HTML via onclick="pressed(this)" to pass button element as argument
 function pressed(button) {
 
+    if ("vibrate" in navigator) {
+        // Trigger a short vibration (in milliseconds)
+        navigator.vibrate(20);
+      }
+
+    if (gameCompleted) {
+        let message = 'Refresh to Play Again!'
+        console.log(message);
+        showToast(message)
+        return
+    }
+
     // Declare buttonValue as a block-scoped constant
     const buttonValue = button.innerText;
 
@@ -285,6 +299,7 @@ function pressed(button) {
             let message = 'Congratulations!'
             console.log(message);
             showToast(message)
+            gameCompleted = true
             return
         }
 
@@ -324,11 +339,6 @@ function pressed(button) {
 
     }
 
-    if ("vibrate" in navigator) {
-      // Trigger a short vibration (in milliseconds)
-      navigator.vibrate(20);
-    }
-    
 }
 
 // Toasting function to add a temporary toast message

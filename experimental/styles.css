@@ -68,11 +68,16 @@
   --fs-toaster: 14px;
 
 }
+@font-face {
+  font-family: 'RubikFont'; 
+  src: url('Rubik-Medium.ttf') format('truetype'); 
+}
 * { 
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
-  font-family: Tahoma;
+  font-family: Tahoma, "RubikFont", sans-serif;
+  /* font-family: "RubikFont", Tahoma, sans-serif; */
   font-size: 16px;
   font-weight: 700;
   color: var(--colour-font);
@@ -91,6 +96,7 @@ html, body {
 
   background-color: var(--colourB);
 }
+
 .hidden-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -376,6 +382,14 @@ html, body {
 
   #grid .row .square {
     font-size: 28px;
+  }
+
+  #bottom {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  #bottom::-webkit-scrollbar {
+    display: none;
   }
 
 }
