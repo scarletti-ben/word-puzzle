@@ -20,7 +20,7 @@ var currentRow = 1;
 var dictionary = [];
 var answers = [];
 
-var gameCompleted = false;
+var gameStatus = 0;
 
 // Code to run if debugging level is at a certain level
 if (debugging > 1) {
@@ -32,6 +32,26 @@ if (debugging > 1) {
         console.stdlog.apply(console, arguments);
     }
 
+}
+
+function specialAction () {
+    if (debugging) {
+        let ids = ["debug-outlines", "debug-dictionary", "debug-answers"]
+
+        for (const id of ids) {
+            let element = document.getElementById(id);
+            if (element.style.display === "none") {
+                element.style.display = 'flex'
+            }
+            else {
+                element.style.display = 'none'
+            }
+        }
+
+    }
+    else {
+        showToast("Only in Debug Mode!")
+    }
 }
 
 // Asynchronous function to fetch dictionary.txt and populate dictionary list
@@ -221,15 +241,21 @@ function check() {
     if (guess == answer) {
         return "complete"
     }
-    else {
+    else if (currentRow < maxRow) {
         return "continue"
+    }
+    else {
+        return "incomplete"
     }
 
 }
 
 // Reload the page
 function reloadPage() {
-    window.location.reload()
+    showToast("Generating new answer...")
+    setTimeout(() => {
+        window.location.reload();
+    }, 1000);
 }
 
 // Reload the page and clear cache, if possible
@@ -241,6 +267,13 @@ function reloadPageHard() {
 function showAnswer() {
     let message = `The answer is ${answer}`
     showToast(message)
+
+    let defaults = Object.keys(letterStates).filter(key => letterStates[key] === "default");
+    let valid = defaults.filter(letter => answer.includes(letter));
+    for (const letter of valid) {
+        upgrade(letter, "hinted")
+    }
+    
 }
 
 // Get a hint by altering a keyboard button state
@@ -265,14 +298,21 @@ function getHint() {
 function pressed(button) {
 
     if ("vibrate" in navigator) {
-        // Trigger a short vibration (in milliseconds)
-        navigator.vibrate(20);
-      }
+        navigator.vibrate(40);
+    }
+    else {
+    }
 
-    if (gameCompleted) {
+    if (gameStatus === 1) {
         let message = 'Refresh to Play Again!'
         console.log(message);
-        showToast(message)
+        showToast(message);
+        return
+    }
+    else if (gameStatus == 2) {
+        let message = `The answer is ${answer}`;
+        console.log(message);
+        showToast(message);
         return
     }
 
@@ -299,7 +339,21 @@ function pressed(button) {
             let message = 'Congratulations!'
             console.log(message);
             showToast(message)
-            gameCompleted = true
+            gameStatus = 1
+            return
+        }
+        else if (result === "incomplete") {
+            let message = `The answer is ${answer}`;
+            console.log(message);
+            showToast(message);
+            gameStatus = 2
+
+            let defaults = Object.keys(letterStates).filter(key => letterStates[key] === "default");
+            let valid = defaults.filter(letter => answer.includes(letter));
+            for (const letter of valid) {
+                upgrade(letter, "hinted")
+            }
+
             return
         }
 
@@ -419,6 +473,25 @@ async function init() {
         };
     }
 
+    document.addEventListener('keydown', function(event) {
+        
+        if (event.key === 'Enter') {
+          const returnKey = document.querySelector('.return');
+          pressed(returnKey)
+        }
+        else if (event.key === 'Backspace'){
+            const backspaceKey = document.querySelector('.backspace');
+            pressed(backspaceKey)
+        }
+        else if (event.code === `Key${event.key.toUpperCase()}`) {
+            let letter = event.key.toUpperCase();
+            const alphaKeys = document.querySelectorAll('#keyboard .row .key');
+            const letterKey = Array.from(alphaKeys).find(key => key.innerText === letter);
+            pressed(letterKey)
+        }
+
+    });
+
     // Run populateDictionary function to allow access to valid words
     await populateDictionary()
 
@@ -430,7 +503,7 @@ async function init() {
     // Set the answer as a random word from the answers list
     answer = answers[Math.floor(Math.random() * answers.length)];
     
-    if (debugging) {
+    if (debugging > 1) {
         answer = 'SHOES'
         answer = 'SHOWN'
         answer = 'SPILT'
