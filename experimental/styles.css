@@ -77,7 +77,7 @@
 }
 @font-face {
   font-family: 'NotoSans'; 
-  src: url('NotoSans.ttf') format('truetype'); 
+  src: url('../NotoSans.ttf') format('truetype'); 
 }
 * { 
   margin: 0px;

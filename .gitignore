@@ -1,7 +1,1 @@
 # Ignore files and directories for local use
-test.html
-*rebuild*/
-*.bat
-tahoma*
-*.zip
-old/

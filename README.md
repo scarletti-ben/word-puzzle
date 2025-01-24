@@ -49,6 +49,13 @@ This list may contain a great many inaccuracies, as the fact that I learned it d
 - You can access other files in the root of your server by filename `http://localhost:8000/script.js`
     - You can also access subdirectories `http://localhost:8000/subdirectory`
 
+```batch
+@ECHO off & @REM Disable posting of commands to terminal
+CD /d "%~dp0" & @REM Set the current working directory to the directory of this file
+start http://localhost:8000 & @REM Open the local server in the default web browser
+CALL python -m http.server & @REM Activate local server on http://localhost:8000/
+```
+
 An example log for a simple server is below
 ```powershell
 PS C:\...\word-puzzle> python -m http.server
@@ -256,3 +263,10 @@ in css
 
 
 [CHORD] Control + K, Control + S to get to settings
+
+# Assets
+- `NotoSans.ttf` is an open-source `monospaced` font from [`Google Fonts`](https://fonts.google.com/noto/specimen/Noto+Sans)
+- `material-128x128.ico` is an open-source icon from [`Google Material Icons`](https://fonts.google.com/icons)
+    - A selection of icons that you can access via the api, or copy the `SVG` code directly
+
+- Local entrypoint is `python -m http.server` for both root and experimental
