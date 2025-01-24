@@ -36,7 +36,15 @@ if (debugging > 1) {
 function goNormal() {
     showToast("Returning to normal...")
     setTimeout(() => {
-        window.location.href = '/';
+        
+        var link = "/";
+        var url = window.location.origin;
+        if (url.includes("github.io")) {
+            const path = window.location.pathname.split('/')[1];
+            link += path
+        }
+        window.location.href = link
+          
     }, 1000);
 }
 
