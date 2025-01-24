@@ -20,7 +20,7 @@ var currentRow = 1;
 var dictionary = [];
 var answers = [];
 
-var gameCompleted = false;
+var gameStatus = 0;
 
 // Code to run if debugging level is at a certain level
 if (debugging > 1) {
@@ -221,8 +221,11 @@ function check() {
     if (guess == answer) {
         return "complete"
     }
-    else {
+    else if (currentRow < maxRow) {
         return "continue"
+    }
+    else {
+        return "incomplete"
     }
 
 }
@@ -270,10 +273,16 @@ function pressed(button) {
     else {
     }
 
-    if (gameCompleted) {
+    if (gameStatus === 1) {
         let message = 'Refresh to Play Again!'
         console.log(message);
-        showToast(message)
+        showToast(message);
+        return
+    }
+    else if (gameStatus == 2) {
+        let message = `The answer is ${answer}`;
+        console.log(message);
+        showToast(message);
         return
     }
 
@@ -300,7 +309,14 @@ function pressed(button) {
             let message = 'Congratulations!'
             console.log(message);
             showToast(message)
-            gameCompleted = true
+            gameStatus = 1
+            return
+        }
+        else if (result === "incomplete") {
+            let message = `The answer is ${answer}`;
+            console.log(message);
+            showToast(message);
+            gameStatus = 2
             return
         }
 
