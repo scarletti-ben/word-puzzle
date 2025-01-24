@@ -34,6 +34,26 @@ if (debugging > 1) {
 
 }
 
+function specialAction () {
+    if (debugging) {
+        let ids = ["debug-outlines", "debug-dictionary", "debug-answers"]
+
+        for (const id of ids) {
+            let element = document.getElementById(id);
+            if (element.style.display === "none") {
+                element.style.display = 'flex'
+            }
+            else {
+                element.style.display = 'none'
+            }
+        }
+
+    }
+    else {
+        showToast("Only in Debug Mode!")
+    }
+}
+
 // Asynchronous function to fetch dictionary.txt and populate dictionary list
 async function populateDictionary() {
     try {
@@ -232,7 +252,10 @@ function check() {
 
 // Reload the page
 function reloadPage() {
-    window.location.reload()
+    showToast("Generating new answer...")
+    setTimeout(() => {
+        window.location.reload();
+    }, 1000);
 }
 
 // Reload the page and clear cache, if possible
@@ -244,6 +267,13 @@ function reloadPageHard() {
 function showAnswer() {
     let message = `The answer is ${answer}`
     showToast(message)
+
+    let defaults = Object.keys(letterStates).filter(key => letterStates[key] === "default");
+    let valid = defaults.filter(letter => answer.includes(letter));
+    for (const letter of valid) {
+        upgrade(letter, "hinted")
+    }
+    
 }
 
 // Get a hint by altering a keyboard button state
@@ -317,6 +347,13 @@ function pressed(button) {
             console.log(message);
             showToast(message);
             gameStatus = 2
+
+            let defaults = Object.keys(letterStates).filter(key => letterStates[key] === "default");
+            let valid = defaults.filter(letter => answer.includes(letter));
+            for (const letter of valid) {
+                upgrade(letter, "hinted")
+            }
+
             return
         }
 
@@ -466,7 +503,7 @@ async function init() {
     // Set the answer as a random word from the answers list
     answer = answers[Math.floor(Math.random() * answers.length)];
     
-    if (debugging) {
+    if (debugging > 1) {
         answer = 'SHOES'
         answer = 'SHOWN'
         answer = 'SPILT'

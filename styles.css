@@ -22,6 +22,8 @@
   --colour-hinted: var(--colourJ);
   --colour-default: var(--colourE);
   --colour-font: var(--colourC);
+  /* --colour-reload: rgb(184, 78, 64); */
+  --colour-reload: var(--colourA);
 
   --root-fs: 16px;
 
