@@ -47,6 +47,7 @@
 
   --grid-row-square-width: 52px;
   --grid-row-square-height: 52px;
+  --grid-row-square-inset: 2px;
 
   --keyboard-width: 100%;
   --keyboard-height: 200px;
@@ -240,10 +241,10 @@ html, body {
   transition-delay: 1.2s; 
 }
 #grid .row .square[data-state="default"] {
-  box-shadow: inset 0 0 0 2px var(--colour-default);
+  box-shadow: inset 0 0 0 var(--grid-row-square-inset) var(--colour-default);
 }
 #grid .row .square[data-state="active"] {
-  box-shadow: inset 0 0 0 2px var(--colour-active);
+  box-shadow: inset 0 0 0 var(--grid-row-square-inset) var(--colour-active);
 }
 #grid .row .square[data-state="correct"] {
   background-color: var(--colour-correct);
@@ -342,20 +343,22 @@ html, body {
     --keyboard-row-key-width: 42px;
     --keyboard-row-key-height: 72px;
     --keyboard-rowgap: 0px;
-    --keyboard-padding: 2px;
+    --keyboard-padding: 0px;
     --keyboard-row-colgap: 0px;
     --keyboard-row-key-br: 6px;
-    --keyboard-row-key-margin: 3px;
+    --keyboard-row-key-margin: 4px;
 
     --grid-width: 100%;
-    --grid-padding: 4px;
-    --grid-rowgap: 5px;
+    --grid-padding: 0px;
+    --grid-rowgap: 6px;
 
     --grid-row-height: 100%;
-    --grid-row-colgap: 5px;
+    --grid-row-colgap: 6px;
 
     --grid-row-square-width: 62px;
     --grid-row-square-height: 62px;
+    --grid-row-square-inset: 3px;
+
 
     /* --colourE: green; */
 
@@ -365,36 +368,34 @@ html, body {
     font-size: 28px;
   }
 
-  #keyboard {
-    margin: 8px;
+  #keyboard .row .key {
+    font-size: 26px;
   }
 
-  #grid {
-    margin: auto;
-  }
 }
 
 /* Generally 1920x1080 with no OS scaling */
 @media (max-resolution: 1x) {
   :root {
 
-    --keyboard-row-key-width: 51px;
-    --keyboard-row-key-height: 87px;
+    --keyboard-row-key-width: 60px;
+    --keyboard-row-key-height: 84px;
     --keyboard-rowgap: 0px;
-    --keyboard-padding: 2px;
+    --keyboard-padding: 0px;
     --keyboard-row-colgap: 0px;
     --keyboard-row-key-br: 6px;
-    --keyboard-row-key-margin: 3px;
+    --keyboard-row-key-margin: 4px;
 
     --grid-width: 100%;
-    --grid-padding: 4px;
-    --grid-rowgap: 5px;
+    --grid-padding: 0px;
+    --grid-rowgap: 7px;
 
     --grid-row-height: 100%;
-    --grid-row-colgap: 5px;
+    --grid-row-colgap: 6px;
 
-    --grid-row-square-width: 82px;
-    --grid-row-square-height: 82px;
+    --grid-row-square-width: 80px;
+    --grid-row-square-height: 80px;
+    --grid-row-square-inset: 3px;
 
     /* --colourE: red; */
 
@@ -404,13 +405,10 @@ html, body {
     font-size: 28px;
   }
 
-  #keyboard {
-    margin: 8px;
+  #keyboard .row .key {
+    font-size: 30px;
   }
 
-  #grid {
-    margin: auto;
-  }
 }
 
 /* Works for 412x783 Pixel 7 in Portrait (2.63dpr) (screen size 412x915) */
