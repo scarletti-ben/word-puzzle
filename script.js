@@ -265,11 +265,9 @@ function getHint() {
 function pressed(button) {
 
     if ("vibrate" in navigator) {
-        alert("success")
         navigator.vibrate(40);
     }
     else {
-        alert("fail")
     }
 
     if (gameCompleted) {
