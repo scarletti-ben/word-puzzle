@@ -420,6 +420,25 @@ async function init() {
         };
     }
 
+    document.addEventListener('keydown', function(event) {
+        
+        if (event.key === 'Enter') {
+          const returnKey = document.querySelector('.return');
+          pressed(returnKey)
+        }
+        else if (event.key === 'Backspace'){
+            const backspaceKey = document.querySelector('.backspace');
+            pressed(backspaceKey)
+        }
+        else if (event.code === `Key${event.key.toUpperCase()}`) {
+            let letter = event.key.toUpperCase();
+            const alphaKeys = document.querySelectorAll('#keyboard .row .key');
+            const letterKey = Array.from(alphaKeys).find(key => key.innerText === letter);
+            pressed(letterKey)
+        }
+
+    });
+
     // Run populateDictionary function to allow access to valid words
     await populateDictionary()
 
