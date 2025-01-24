@@ -460,3 +460,45 @@ html, body {
   }
 
 }
+
+/* 390x844 */
+@media (orientation: portrait) and (max-width: 400px) {
+
+  :root {
+
+    --bottom-height: 92%;
+
+    --keyboard-row-key-width: 32px;
+    --keyboard-row-key-height: 54px;
+    --keyboard-rowgap: 0px;
+    --keyboard-padding: 0px;
+    --keyboard-row-colgap: 0px;
+    --keyboard-row-key-margin: 3px;
+
+    --grid-width: 100%;
+    --grid-padding: 0px;
+    --grid-rowgap: 5px;
+
+    --grid-row-height: 100%;
+    --grid-row-colgap: 5px;
+
+    --grid-row-square-width: 54px;
+    --grid-row-square-height: 54px;
+
+    --colourE: blue;
+
+  }
+
+  #grid .row .square {
+    font-size: 26px;
+  }
+
+  #bottom {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  #bottom::-webkit-scrollbar {
+    display: none;
+  }
+
+}
