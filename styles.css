@@ -340,7 +340,7 @@ html, body {
 @media (min-resolution: 1x) and (max-resolution: 1.2x) {
   :root {
 
-    --keyboard-row-key-width: 42px;
+    --keyboard-row-key-width: 50px;
     --keyboard-row-key-height: 72px;
     --keyboard-rowgap: 0px;
     --keyboard-padding: 0px;
@@ -365,11 +365,11 @@ html, body {
   }
 
   #grid .row .square {
-    font-size: 28px;
+    font-size: 24px;
   }
 
   #keyboard .row .key {
-    font-size: 26px;
+    font-size: 22px;
   }
 
 }
