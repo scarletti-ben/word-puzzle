@@ -65,11 +65,11 @@
   --keyboard-row-key-br: 4px;
   --keyboard-row-key-background: var(--colourD);
 
-  --width-toaster: 240px;
-  --height-toaster: 60px;
-  --padding-toaster: 16px;
-  --br-toaster: 8px;
-  --fs-toaster: 14px;
+  --toaster-width: 240px;
+  --toaster-height: 60px;
+  --toaster-padding: 16px;
+  --toaster-br: 8px;
+  --toaster-fs: 14px;
 
 }
 * { 

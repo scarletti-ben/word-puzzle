@@ -265,9 +265,12 @@ function getHint() {
 function pressed(button) {
 
     if ("vibrate" in navigator) {
-        // Trigger a short vibration (in milliseconds)
-        navigator.vibrate(20);
-      }
+        alert("success")
+        navigator.vibrate(40);
+    }
+    else {
+        alert("fail")
+    }
 
     if (gameCompleted) {
         let message = 'Refresh to Play Again!'
