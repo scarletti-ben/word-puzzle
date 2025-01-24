@@ -6,7 +6,7 @@ const maxColumn = 5;
 const maxRow = 6;
 
 // Declare answer variable to be assigned a value later
-var answer;
+var answer = "";
 
 const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 const letterStates = {};
@@ -17,8 +17,6 @@ for (const letter of alphabet) {
 // Variables
 var currentColumn = 1;
 var currentRow = 1;
-var dictionary = [];
-var answers = [];
 
 var gameStatus = 0;
 
@@ -34,9 +32,17 @@ if (debugging > 1) {
 
 }
 
+// Go normal
+function goNormal() {
+    showToast("Returning to normal...")
+    setTimeout(() => {
+        window.location.href = '/';
+    }, 1000);
+}
+
 function specialAction () {
     if (debugging) {
-        let ids = ["debug-outlines", "debug-dictionary", "debug-answers"]
+        let ids = ["debug-outlines"]
 
         for (const id of ids) {
             let element = document.getElementById(id);
@@ -51,36 +57,6 @@ function specialAction () {
     }
     else {
         showToast("Only in Debug Mode!")
-    }
-}
-
-// Asynchronous function to fetch dictionary.txt and populate dictionary list
-async function populateDictionary() {
-    try {
-        const response = await fetch('dictionary.txt');
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        const text = await response.text();
-        dictionary = text.split('\n').map(word => word.trim().toUpperCase());
-        console.log("Loaded dictionary.txt");
-    } catch (error) {
-        console.error('Error loading dictionary:', error);
-    }
-}
-
-// Asynchronous function to fetch answers.txt and populate answers list
-async function populateAnswers() {
-    try {
-        const response = await fetch('answers.txt');
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        const text = await response.text();
-        answers = text.split('\n').map(word => word.trim().toUpperCase());
-        console.log("Loaded answers.txt");
-    } catch (error) {
-        console.error('Error loading answers:', error);
     }
 }
 
@@ -117,23 +93,6 @@ function upgrade(letter, suggestedState) {
 // Function to check the current guess
 function check() {
 
-    // Dictionary loaded check
-    if (dictionary.length == 0) {
-        let message = "Dictionary not loaded (CORS)"
-        console.log(message);
-        showToast(message)
-        return "error"
-    }
-
-    // Ensure the asynchronous loading of dictionary has finished
-    if (!answer) {
-        let message = "Page still loading, answer has not been set yet"
-        console.log(message);
-        showToast(message)
-        answer = dictionary[Math.floor(Math.random() * dictionary.length)];
-        return "error";
-    }
-
     const gridRow = document.querySelector(`#grid .row:nth-child(${currentRow})`);
     const gridSquares = gridRow.querySelectorAll('#grid .row .square');
     const gridArray = Array.from(gridSquares)
@@ -151,17 +110,6 @@ function check() {
 
     // Declare guess as a block-level constant and use string join for all letters
     const guess = gridArray.map(element => element.innerText).join('');
-
-    // Cancel the check if the word is not in the dictionary
-    if (!dictionary.includes(guess)) {
-        let message = `${guess} not in dictionary`
-        console.log(message);
-        showToast(message)
-        return "error"
-    }
-    else {
-        console.log(`The word ${guess} is in the dictionary`);
-    }
 
     // For loop to set data-state for each letter
     gridArray.forEach((gridSquare, index) => {
@@ -491,26 +439,14 @@ async function init() {
         }
 
     });
-
-    // Run populateDictionary function to allow access to valid words
-    await populateDictionary()
-
-    // Run populateAnswers function to allow access to valid answers
-    await populateAnswers()
-
-    console.log(`Length: ${dictionary.length}`)
-
-    // Set the answer as a random word from the answers list
-    answer = answers[Math.floor(Math.random() * answers.length)];
     
-    if (debugging > 1) {
-        answer = 'SHOES'
-        answer = 'SHOWN'
-        answer = 'SPILT'
-        let message = `The answer is ${answer}`
-        alert(message)
-        showToast(message)
+    // Clear answer so it doesn't come from main site accidentally
+    answer = "";
+    for (let i = 0; i < 5; i++) {
+        const randomIndex = Math.floor(Math.random() * alphabet.length);
+        answer += alphabet[randomIndex];
     }
+    // alert(`Answer: ${answer}`)
 
     document.addEventListener('keydown', function (event) {
     
@@ -538,37 +474,6 @@ async function init() {
         }
 
     });
-
-    // function throttle(mainFunction, delay) {
-    //   let timerFlag = null; // Variable to keep track of the timer
-    
-    //   // Returning a throttled version 
-    //   return (...args) => {
-    //     if (timerFlag === null) { // If there is no timer currently running
-    //       mainFunction(...args); // Execute the main function 
-    //       timerFlag = setTimeout(() => { // Set a timer to clear the timerFlag after the specified delay
-    //         timerFlag = null; // Clear the timerFlag to allow the main function to be executed again
-    //       }, delay);
-    //     }
-    //   };
-    // }
-
-    // // Smooth scroll to top or bottom of the 'outer' div, smoothly hiding 'top' bar
-    // // Function to be added to window event 'wheel'
-    // function smoothScrollOuter(event) {
-    //   // event.preventDefault();
-    //   const outer = document.getElementById('outer');
-    //   const scrolledUp = event.wheelDelta ? event.wheelDelta > 0 : event.deltaY < 0;
-    //   console.log(`Scrolled Up: ${scrolledUp}`)
-      
-    //   if (scrolledUp) {
-    //     outer.scrollTo({ top: 0, behavior: 'smooth' })
-    //   } else {
-    //     outer.scrollTo({ top: outer.scrollHeight, behavior: 'smooth' })
-    //   }
-      
-    // }
-    // window.addEventListener('wheel', smoothScrollOuter, { passive: false });
 
 }
 

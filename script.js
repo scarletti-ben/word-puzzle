@@ -250,6 +250,14 @@ function check() {
 
 }
 
+// Go experimental
+function goExperimental() {
+    showToast("Going experimental...")
+    setTimeout(() => {
+        window.location.href = 'experimental';
+    }, 1000);
+}
+
 // Reload the page
 function reloadPage() {
     showToast("Generating new answer...")
