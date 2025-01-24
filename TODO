@@ -1,1 +1,4 @@
 - Flip animation in grid to show state of submitted letters
+- Add light / dark mode toggle
+- Make into PWA / download
+- Make top icons maintain size relative to #top
