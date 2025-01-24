@@ -72,11 +72,16 @@
   --toaster-fs: 14px;
 
 }
+@font-face {
+  font-family: 'RubikFont'; 
+  src: url('Rubik-Medium.ttf') format('truetype'); 
+}
 * { 
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
-  font-family: Tahoma;
+  font-family: Tahoma, "RubikFont", sans-serif;
+  /* font-family: "RubikFont", Tahoma, sans-serif; */
   font-size: var(--root-fs);
   font-weight: 700;
   color: var(--colour-font);
