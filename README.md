@@ -1,5 +1,3 @@
-# WORK IN PROGRESS
-
 # Overview
 This project started as a learning exercise to improve and practice my `HTML`, `CSS` and `JavaScript`. 
 
