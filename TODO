@@ -1,3 +1,7 @@
+# Important
+- Clean up `script.js`
+
+# Other
 - Flip animation in grid to show state of submitted letters
 - Add light / dark mode toggle
 - Make into PWA / download
