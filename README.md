@@ -189,11 +189,37 @@ to
 ```
 - `#grid .row` would select all `row` elements that are children of the specific ID: `grid`
 
+`>` is the child combinator in CSS. It selects only the direct children of the specified parent element.
+```css
+.container > .box > .item {
+  color: red;
+}
+```
+- `.container > .box` selects `box` elements that are direct children of a `container` element
+- `.box > .item` selects `item` elements that are direct children of a `box` element
+```html
+<div class="container">
+  <div class="box">
+    <div class="item">This is a direct child of a 'box' element</div>
+    <div class="item">This is a direct child of a 'box' element</div>
+    <div>
+      <div class="item">This is not a direct child of a 'box' element</div>
+    </div>
+  </div>
+</div>
+```
+
 # Miscellaneous
 
 ## Github
 - You can revert the last commit made to `GitHub` using the terminal
 - You can close an issue directly in the commit message using something like `Fixes #1 - Message`
+- You can stop tracking a file or directory that was previously tracked by adding it to `.gitignore` and running `git rm --cached file.txt test.txt` for any number of files, use `git rm -r --cached dir1 dir2` for any number of directories, where the `-r` means recursive and will affect all files and directories in the given directory
+```powershell
+git rm -r --cached directory
+git commit -m "Stopped tracking 'directory' after rule added to .gitignore"
+git push
+```
 
 ## CSS
 
