@@ -1,41 +1,33 @@
-// Settings
-var debugging = 0;
-
 // Constants
+var DEBUG_LEVEL = 0;
 const maxColumn = 5;
 const maxRow = 6;
+const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
-// Declare answer variable to be assigned a value later
+// Variables
+var currentColumn = 1;
+var currentRow = 1;
+var gameStatus = 0;
+
+// Declarations
 var answer;
 
-const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+// Core Objects
+var dictionary = [];
+var answers = [];
 const letterStates = {};
 for (const letter of alphabet) {
   letterStates[letter] = "default";
 }
 
-// Variables
-var currentColumn = 1;
-var currentRow = 1;
-var dictionary = [];
-var answers = [];
-
-var gameStatus = 0;
-
-// Code to run if debugging level is at a certain level
-if (debugging > 1) {
-
-    // Override console.log function to show alerts
-    console.stdlog = console.log.bind(console); 
-    console.log = function(){
-        window.alert('Console: ' + arguments[0]);
-        console.stdlog.apply(console, arguments);
-    }
+// Code to run depending on the value of DEBUG_LEVEL
+if (DEBUG_LEVEL > 1) {
 
 }
 
-function specialAction () {
-    if (debugging) {
+// Show debugging buttons if DEBUG_LEVEL is not 0
+function showDebugButtons () {
+    if (DEBUG_LEVEL) {
         let ids = ["debug-outlines", "debug-dictionary", "debug-answers"]
 
         for (const id of ids) {
@@ -84,7 +76,7 @@ async function populateAnswers() {
     }
 }
 
-//
+// Function to return determined state of a keyboard button, ensuring no downgrades
 function determineFinalState(suggestedState, currentState) {
     let possibleStates = [
         "correct",
@@ -98,8 +90,9 @@ function determineFinalState(suggestedState, currentState) {
     return possibleStates[Math.min(currentStateIndex, suggestedStateIndex)];
 }
 
-// Function to upgrade a keyboard letter button, ensuring it never downgrades
+// Function to upgrade a keyboard letter button, ensuring no downgrades
 function upgrade(letter, suggestedState) {
+
     // Set the data-state attribute to "present" for the matching key
     const container = document.querySelector('#keyboard');
     const buttons = container.querySelectorAll('.key');
@@ -112,9 +105,10 @@ function upgrade(letter, suggestedState) {
     keyboardButton.setAttribute('data-state', finalState);
     letterStates[letter] = finalState
     console.log(letterStates)
+
 }
 
-// Function to check the current guess
+// Function to check the submitted guess, and change grid and keyboard colours accordingly
 function check() {
 
     // Dictionary loaded check
@@ -250,7 +244,7 @@ function check() {
 
 }
 
-// Go experimental
+// Show message and go to the experimental version of the site, at experimental/index.html
 function goExperimental() {
     showToast("Going experimental...")
     setTimeout(() => {
@@ -258,7 +252,7 @@ function goExperimental() {
     }, 1000);
 }
 
-// Reload the page
+// Show message and reload the page
 function reloadPage() {
     showToast("Generating new answer...")
     setTimeout(() => {
@@ -271,7 +265,7 @@ function reloadPageHard() {
     window.location.reload(true)
 }
 
-// Show answer as an alert / toast
+// Show answer within a timed toaster
 function showAnswer() {
     let message = `The answer is ${answer}`
     showToast(message)
@@ -284,7 +278,7 @@ function showAnswer() {
     
 }
 
-// Get a hint by altering a keyboard button state
+// Get a hint and alter a keyboard button data-state to "hinted", if possible
 function getHint() {
     let message = "error"
     let defaults = Object.keys(letterStates).filter(key => letterStates[key] === "default");
@@ -331,7 +325,6 @@ function pressed(button) {
     const gridSquare = document.querySelector(`#grid .row:nth-child(${currentRow}) .square:nth-child(${currentColumn})`);
 
     if (button.classList.contains("return")) {
-
 
         let result = check()
 
@@ -415,6 +408,7 @@ function showToast(message) {
         toaster.style.visibility = 'hidden';
         toaster.textContent = '';
     }, 1200);
+
 }
 
 // Toggle debug outlines for HTML elements
@@ -426,50 +420,17 @@ function toggleDebugOutlines () {
     const newOutline = currentOutline === '2px' ? '0px' : '2px';
     root.style.setProperty('--debug-outline', newOutline);
 
-    // Postit
-    // Only works in Chrome on Android :D
     if ("vibrate" in navigator) {
-      // Trigger a short vibration (in milliseconds)
-      navigator.vibrate(200);  // 200ms vibration
+      navigator.vibrate(200);
     }
 
 }
 
 // Toggle scrollbar for an HTML element
 function toggleScrollbar (id) {
-
     const element = document.getElementById(id);
     element.classList.toggle('hidden-scrollbar');
-
 }
-
-// Function to return certain element dimensions as a single string
-function getValues() {
-
-    const viewportWidth = window.innerWidth;
-    const viewportHeight = window.innerHeight;
-    var message = `Viewport: ${viewportWidth.toFixed(1)}x${viewportHeight.toFixed(1)}`;
-
-    function addElement(id) {
-        var element = document.getElementById(id);
-        var rect = element.getBoundingClientRect();
-        var w = rect.width
-        var h = rect.height
-        var w2 = (w / viewportWidth).toFixed(2)
-        var h2 = (h / viewportHeight).toFixed(2)
-        message += `\n${id}: ${w.toFixed(1)}x${h.toFixed(1)} => [~${w2}vw, ~${h2}vh]`;
-    }
-
-    addElement('outer')
-    addElement('top')
-    addElement('bottom')
-    addElement('keyboard')
-    addElement('grid')
-
-    return message
-
-}
-
 
 // Initialisation function to be called when the DOM has loaded
 async function init() {
@@ -511,11 +472,9 @@ async function init() {
     // Set the answer as a random word from the answers list
     answer = answers[Math.floor(Math.random() * answers.length)];
     
-    if (debugging > 1) {
+    if (DEBUG_LEVEL > 1) {
         answer = 'SHOES'
-        answer = 'SHOWN'
-        answer = 'SPILT'
-        let message = `The answer is ${answer}`
+        let message = `[DEBUGGING] The answer is ${answer}`
         alert(message)
         showToast(message)
     }
@@ -525,16 +484,12 @@ async function init() {
         var prevent = true;
     
         if (event.key === 'F1') {
-            var message = getValues()
-            alert(message);
-        }
-        else if (event.key === 'F2'){
             toggleDebugOutlines()
         }
-        else if (event.key === 'F3'){
+        else if (event.key === 'F2'){
             toggleScrollbar('outer')
         }
-        else if (event.key === 'F4'){
+        else if (event.key === 'F3'){
             toggleScrollbar('bottom')
         }
         else {
@@ -546,37 +501,6 @@ async function init() {
         }
 
     });
-
-    // function throttle(mainFunction, delay) {
-    //   let timerFlag = null; // Variable to keep track of the timer
-    
-    //   // Returning a throttled version 
-    //   return (...args) => {
-    //     if (timerFlag === null) { // If there is no timer currently running
-    //       mainFunction(...args); // Execute the main function 
-    //       timerFlag = setTimeout(() => { // Set a timer to clear the timerFlag after the specified delay
-    //         timerFlag = null; // Clear the timerFlag to allow the main function to be executed again
-    //       }, delay);
-    //     }
-    //   };
-    // }
-
-    // // Smooth scroll to top or bottom of the 'outer' div, smoothly hiding 'top' bar
-    // // Function to be added to window event 'wheel'
-    // function smoothScrollOuter(event) {
-    //   // event.preventDefault();
-    //   const outer = document.getElementById('outer');
-    //   const scrolledUp = event.wheelDelta ? event.wheelDelta > 0 : event.deltaY < 0;
-    //   console.log(`Scrolled Up: ${scrolledUp}`)
-      
-    //   if (scrolledUp) {
-    //     outer.scrollTo({ top: 0, behavior: 'smooth' })
-    //   } else {
-    //     outer.scrollTo({ top: outer.scrollHeight, behavior: 'smooth' })
-    //   }
-      
-    // }
-    // window.addEventListener('wheel', smoothScrollOuter, { passive: false });
 
 }
 
