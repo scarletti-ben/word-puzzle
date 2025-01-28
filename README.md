@@ -1,5 +1,5 @@
 # Overview
-This project started as a learning exercise to improve and practice my `HTML`, `CSS` and `JavaScript`. 
+This project started as a learning exercise to improve and practice my `HTML`, `CSS` and `JavaScript`. It uses pure `CSS` and `JavaScript`, which may be foolish but here we are.
 
 # Project Structure
 ```
