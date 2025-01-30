@@ -199,7 +199,7 @@ html, body {
 
   box-shadow: inset 0 0 0 var(--debug-outline) greenyellow;
 }
-#grid {
+.grid {
   display: flex;
   flex-direction: column;
 
@@ -214,14 +214,14 @@ html, body {
   
   box-shadow: inset 0 0 0 var(--debug-outline) green;
 }
-#grid .row {
+.grid .row {
   display: flex;
   flex-direction: row;
   justify-content: center;
 
   column-gap: var(--grid-row-colgap);
 }
-#grid .row .square {
+.grid .row .square {
   height: var(--grid-row-square-height);
   width: var(--grid-row-square-width);
 
@@ -234,40 +234,40 @@ html, body {
   transition: transform 2s ease-in-out, background-color 0.2s ease-in-out 2.2s;
   
 }
-#grid .row .square:nth-child(1) { 
+.grid .row .square:nth-child(1) { 
   transition-delay: 0s; 
 }
-#grid .row .square:nth-child(2) { 
+.grid .row .square:nth-child(2) { 
   transition-delay: 0.3s; 
 }
-#grid .row .square:nth-child(3) { 
+.grid .row .square:nth-child(3) { 
   transition-delay: 0.6s; 
 }
-#grid .row .square:nth-child(4) { 
+.grid .row .square:nth-child(4) { 
   transition-delay: 0.9s; 
 }
-#grid .row .square:nth-child(5) { 
+.grid .row .square:nth-child(5) { 
   transition-delay: 1.2s; 
 }
-#grid .row .square[data-state="default"] {
+.grid .row .square[data-state="default"] {
   box-shadow: inset 0 0 0 var(--grid-row-square-inset) var(--colour-default);
 }
-#grid .row .square[data-state="active"] {
+.grid .row .square[data-state="active"] {
   box-shadow: inset 0 0 0 var(--grid-row-square-inset) var(--colour-active);
 }
-#grid .row .square[data-state="correct"] {
+.grid .row .square[data-state="correct"] {
   background-color: var(--colour-correct);
   transform: rotateX(360deg);
 }
-#grid .row .square[data-state="present"] {
+.grid .row .square[data-state="present"] {
   background-color: var(--colour-present);
   transform: rotateX(360deg);
 }
-#grid .row .square[data-state="absent"] {
+.grid .row .square[data-state="absent"] {
   background-color: var(--colour-absent);
   transform: rotateX(360deg);
 }
-#keyboard {
+.keyboard {
   /* width: var(--keyboard-width); */
   /* height: var(--keyboard-height); */
 
@@ -285,7 +285,7 @@ html, body {
   
   box-shadow: inset 0 0 0 var(--debug-outline) blue;
 }
-#keyboard .row {
+.keyboard .row {
   /* width: var(--keyboard-row-width); */
   /* height: var(--keyboard-row-height); */
 
@@ -298,7 +298,7 @@ html, body {
   column-gap: var(--keyboard-row-colgap);
   box-shadow: inset 0 0 0 var(--debug-outline) blanchedalmond;
 }
-#keyboard .row .key{
+.keyboard .row .key{
   width: var(--keyboard-row-key-width);
   height: var(--keyboard-row-key-height);
 
@@ -322,27 +322,80 @@ html, body {
   touch-action: manipulation;
 
 }
-#keyboard .row .key:active {
+.keyboard .row .key:active {
   filter: brightness(1.6);
   transform: scale(0.96);
 }
-#keyboard .row .key[data-state="correct"] {
+.keyboard .row .key[data-state="correct"] {
   background-color: var(--colour-correct);
 }
-#keyboard .row .key[data-state="present"] {
+.keyboard .row .key[data-state="present"] {
   background-color: var(--colour-present);
 }
-#keyboard .row .key[data-state="absent"] {
+.keyboard .row .key[data-state="absent"] {
   background-color: var(--colour-absent);
 }
-#keyboard .row .key[data-state="hinted"] {
+.keyboard .row .key[data-state="hinted"] {
   background-color: var(--colour-hinted);
 }
-#keyboard .row .key.return {
+.keyboard .row .key.return {
   width: calc(var(--keyboard-row-key-width) * 1.5);
 }
-#keyboard .row .key.backspace {
+.keyboard .row .key.backspace {
   width: calc(var(--keyboard-row-key-width) * 1.5);
+}
+
+#test-dialog {
+  height: 80vh;
+  width: 80vw;
+  max-width: 600px;
+  box-shadow: none;
+  color: white;
+  overflow-x: hidden;
+  background-color: rgb(28, 28, 28);
+  margin: auto;
+  padding: 28px;
+  border: 1px solid rgb(46, 46, 47);
+  border-radius: 8px;
+  /* font-family: monospace;
+  font-size: 8px; */
+  /* box-shadow: inset 0 0 0 2px red; */
+}
+
+#test-dialog:focus {
+  outline: none;
+}
+
+#test-dialog * {
+  font-size: 12px;
+  font-weight: bold;
+  font-family: monospace, sans-serif;
+  line-height: 1.5rem;
+}
+
+#test-dialog h1 {
+  font-size: 22px;
+}
+
+#test-dialog .button{
+  height: 32px;
+
+  /* aspect-ratio: 1; */
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  margin: 0px;
+
+  border-radius: var(--top-button-br);
+
+  background-color: transparent;
+
+  cursor: pointer;
+
+  border: none;
 }
 
 /* Generally 1600x900 with no OS scaling */
@@ -373,11 +426,11 @@ html, body {
 
   }
 
-  #grid .row .square {
+  .grid .row .square {
     font-size: 24px;
   }
 
-  #keyboard .row .key {
+  .keyboard .row .key {
     font-size: 22px;
   }
 
@@ -410,11 +463,11 @@ html, body {
 
   }
 
-  #grid .row .square {
+  .grid .row .square {
     font-size: 28px;
   }
 
-  #keyboard .row .key {
+  .keyboard .row .key {
     font-size: 30px;
   }
 
@@ -448,15 +501,15 @@ html, body {
 
   }
 
-  #keyboard {
+  .keyboard {
     margin: 0px;
   }
 
-  #grid {
+  .grid {
     margin: auto;
   }
 
-  #grid .row .square {
+  .grid .row .square {
     font-size: 28px;
   }
 
@@ -466,6 +519,12 @@ html, body {
   }
   #bottom::-webkit-scrollbar {
     display: none;
+  }
+
+
+  #test-dialog {
+    height: 90vh;
+    width: 95vw;
   }
 
 }
@@ -498,7 +557,7 @@ html, body {
 
   }
 
-  #grid .row .square {
+  .grid .row .square {
     font-size: 26px;
   }
 
@@ -509,6 +568,13 @@ html, body {
   #bottom::-webkit-scrollbar {
     display: none;
   }
+
+  
+  #test-dialog {
+    height: 90vh;
+    width: 95vw;
+  }
+
 
 }
 
@@ -540,7 +606,7 @@ html, body {
 
   }
 
-  #grid .row .square {
+  .grid .row .square {
     font-size: 26px;
   }
 
@@ -551,5 +617,12 @@ html, body {
   #bottom::-webkit-scrollbar {
     display: none;
   }
+
+  
+  #test-dialog {
+    height: 90vh;
+    width: 95vw;
+  }
+
 
 }

@@ -8,6 +8,7 @@ const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 var currentColumn = 1;
 var currentRow = 1;
 var gameStatus = 0;
+var inModal = false;
 
 // Declarations
 var answer;
@@ -94,7 +95,7 @@ function determineFinalState(suggestedState, currentState) {
 function upgrade(letter, suggestedState) {
 
     // Set the data-state attribute to "present" for the matching key
-    const container = document.querySelector('#keyboard');
+    const container = document.querySelector('.keyboard');
     const buttons = container.querySelectorAll('.key');
     let keyboardButton = Array.from(buttons).find(button => button.innerText === letter);
     let currentState = keyboardButton.dataset.state;
@@ -128,8 +129,8 @@ function check() {
         return "error";
     }
 
-    const gridRow = document.querySelector(`#grid .row:nth-child(${currentRow})`);
-    const gridSquares = gridRow.querySelectorAll('#grid .row .square');
+    const gridRow = document.querySelector(`.grid .row:nth-child(${currentRow})`);
+    const gridSquares = gridRow.querySelectorAll('.grid .row .square');
     const gridArray = Array.from(gridSquares)
 
     // Get the number of filled squares
@@ -299,6 +300,10 @@ function getHint() {
 // Function to be called in HTML via onclick="pressed(this)" to pass button element as argument
 function pressed(button) {
 
+    if (inModal) {
+        return
+    }
+
     if ("vibrate" in navigator) {
         navigator.vibrate(40);
     }
@@ -322,7 +327,7 @@ function pressed(button) {
     const buttonValue = button.innerText;
 
     // Find the grid-square for the current row and column (Python equivalent: grid.rows[currentRow][currentColumn])
-    const gridSquare = document.querySelector(`#grid .row:nth-child(${currentRow}) .square:nth-child(${currentColumn})`);
+    const gridSquare = document.querySelector(`.grid .row:nth-child(${currentRow}) .square:nth-child(${currentColumn})`);
 
     if (button.classList.contains("return")) {
 
@@ -367,7 +372,7 @@ function pressed(button) {
         }
 
         // Find the grid-square for the current row and column (Python equivalent: grid.rows[currentRow][currentColumn])
-        const newGridSquare = document.querySelector(`#grid .row:nth-child(${currentRow}) .square:nth-child(${currentColumn})`);
+        const newGridSquare = document.querySelector(`.grid .row:nth-child(${currentRow}) .square:nth-child(${currentColumn})`);
 
         // Set the data-state attribute to "default" for the new grid-square
         newGridSquare.setAttribute('data-state', 'default');
@@ -435,7 +440,7 @@ function toggleScrollbar (id) {
 // Initialisation function to be called when the DOM has loaded
 async function init() {
 
-    const keys = document.querySelectorAll('#keyboard .row .key');
+    const keys = document.querySelectorAll('.keyboard .row .key');
     for (const key of keys) {
         key.onclick = function() {
             pressed(key);
@@ -443,6 +448,10 @@ async function init() {
     }
 
     document.addEventListener('keydown', function(event) {
+
+        if (inModal) {
+            return
+        }
         
         if (event.key === 'Enter') {
           const returnKey = document.querySelector('.return');
@@ -454,7 +463,7 @@ async function init() {
         }
         else if (event.code === `Key${event.key.toUpperCase()}`) {
             let letter = event.key.toUpperCase();
-            const alphaKeys = document.querySelectorAll('#keyboard .row .key');
+            const alphaKeys = document.querySelectorAll('.keyboard .row .key');
             const letterKey = Array.from(alphaKeys).find(key => key.innerText === letter);
             pressed(letterKey)
         }
@@ -502,7 +511,20 @@ async function init() {
 
     });
 
+    showHelp();
+    let dialog = document.getElementById("test-dialog");
+    dialog.addEventListener('close', function() {
+        inModal = false;
+    });
+
 }
 
 // Add listener to call init function when the DOM has loaded
 document.addEventListener('DOMContentLoaded', init);
+
+
+function showHelp() {
+    let dialog = document.getElementById("test-dialog");
+    inModal = true;
+    dialog.showModal();
+}

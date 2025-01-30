@@ -40,8 +40,12 @@
         <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="var(--colour-present)"><path d="M433.74-266Q545-266 623-343.64q78-77.64 78-189.1Q701-644 622.95-721.5 544.91-799 434.5-799q-111.36 0-188.93 77.31Q168-644.37 168-533q0 111.57 77.35 189.28Q322.7-266 433.74-266Zm.26-266Zm-.22 154Q357-378 296-421t-89-111q28-68 89-111t137.78-43q76.87 0 138.48 43 61.61 43 88.74 111-27.13 67.9-88.74 110.95T433.78-378Zm.52-68q47.69 0 87.69-22.96Q562-491.92 586-532.41 562-573 521.93-595.5 481.87-618 433.97-618q-48.43 0-88.2 22.74Q306-572.51 282-532.2q24.46 40.32 64.1 63.26Q385.75-446 434.3-446Zm-.3-16q29.17 0 49.58-20.5Q504-503 504-532q0-29.17-20.42-49.58Q463.17-602 434-602q-29 0-49.5 20.42Q364-561.17 364-532q0 29 20.5 49.5T434-462Zm0 294q-75.73 0-141.86-28.5Q226-225 176-275T98-391.14q-28-66.15-28-141.88Q70-609 98.5-675.5 127-742 176.13-791q49.12-49 115.47-77.5Q357.94-897 433.91-897q76.09 0 142.74 28.52 66.65 28.53 116 77.5Q742-742 770.5-675.64 799-609.28 799-532.96q0 64.99-21.44 122.94Q756.13-352.08 718-305l172 172-68 68-173-173q-44.66 33.21-98.83 51.6Q496-168 434-168Z"/></svg>
       </button>
 
-      <button title="Not a Word-le" class="button" type="button" onclick="goExperimental()">
+      <!-- <button title="Not a Word-le" class="button" type="button" onclick="goExperimental()">
         <svg xmlns="http://www.w3.org/2000/svg" height="18px" viewBox="0 -960 960 960" width="18px" fill="#FFFFFF"><path d="M200-111.87q-56.02 0-79.79-50.16-23.78-50.17 11.57-92.99l220.09-267.85V-754.5h-32.59q-19.15 0-32.32-13.17-13.18-13.18-13.18-32.33t13.18-32.33q13.17-13.17 32.32-13.17h321.44q19.15 0 32.32 13.17 13.18 13.18 13.18 32.33t-13.18 32.33q-13.17 13.17-32.32 13.17h-32.59v231.63l220.09 267.85q35.35 42.82 11.57 92.99-23.77 50.16-79.79 50.16H200Zm6.22-91h547.56L517.13-490.8v-263.7h-74.26v263.7L206.22-202.87ZM480-478.8Z"/></svg>
+      </button> -->
+
+      <button title="Help" class="button" type="button" onclick="showHelp()">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#FFFFFF"><path d="M481.42-233.39q20.27 0 34.58-14.18 14.31-14.19 14.31-34.47 0-20.27-14.19-34.58-14.19-14.3-34.46-14.3-20.27 0-34.58 14.19-14.31 14.18-14.31 34.46 0 20.27 14.19 34.58 14.19 14.3 34.46 14.3Zm-40.19-156.23h79.31q.77-38.18 6.65-55.01 5.89-16.83 32.27-42.98 35.39-32.39 48.92-57.65 13.54-25.27 13.54-55.1 0-56.41-38.96-91.95Q544-727.84 484-727.84q-53.08 0-92.38 27.73-39.31 27.73-54.31 75.96l70.38 29.61q8.31-28.92 27-44.81 18.69-15.88 46.54-15.88 28.46 0 46.92 16.42 18.47 16.43 18.47 41.73 0 23.39-16.12 40.81-16.11 17.42-35.11 35.19-36.39 33.54-45.27 55.2-8.89 21.65-8.89 76.26ZM480.07-84q-81.48 0-153.69-30.94t-126.34-85.05q-54.13-54.11-85.09-126.29Q84-398.46 84-479.93q0-82.74 31-154.67 31-71.93 85.21-126.23 54.21-54.3 126.29-84.74Q398.57-876 479.93-876q82.73 0 154.65 30.42 71.93 30.42 126.24 84.71 54.31 54.29 84.75 126.21Q876-562.74 876-479.98q0 81.75-30.42 153.62t-84.7 126.1q-54.28 54.23-126.18 85.25Q562.8-84 480.07-84Zm-.07-78q132.51 0 225.26-92.74Q798-347.49 798-480t-92.74-225.26Q612.51-798 480-798t-225.26 92.74Q162-612.51 162-480t92.74 225.26Q347.49-162 480-162Zm0-318Z"/></svg>
       </button>
 
       <button title="Show Possible Answers" id="debug-answers" style="display: none;" class="button" type="button" onclick="window.location.href = 'answers.txt'">
@@ -54,7 +58,7 @@
 
     </div>
     <div id="bottom">
-      <div id="grid">
+      <div class="grid">
         <div class="row">
           <div class="square" data-state="default"> </div>
           <div class="square" data-state="default"> </div>
@@ -98,7 +102,7 @@
           <div class="square" data-state="default"> </div>
         </div>
       </div>
-      <div id="keyboard">
+      <div class="keyboard">
         <div class="row">
           <button class="key" type="button" data-state="default">Q</button>
           <button class="key" type="button" data-state="default">W</button>
@@ -139,6 +143,110 @@
         </div>
       </div>
     </div>
+
+  <dialog id="test-dialog">
+    <button title="Get Hint" class="button" type="button" style="float: right;" onclick="document.getElementById('test-dialog').close()">
+      <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="m253.13-166.39-85.3-86.74L393.7-480 167.83-707.74l85.3-87.3 227.3 227.74 226.44-227.74 85.3 87.3L566.3-480l225.87 226.87-85.3 86.74-226.44-227.74-227.3 227.74Z"/></svg>
+    </button>
+    <h1>How to Play</h1>
+    <br>
+    <li>Guess the answer in 6 tries or less</li>
+    <li>Each guess must be a valid 5-letter word</li>
+    <li>The squares update as you guess</li>
+    <br>
+
+    <div class="grid">
+      <div class="row">
+        <div class="square" data-state="absent">F</div>
+        <div class="square" data-state="absent">L</div>
+        <div class="square" data-state="present">A</div>
+        <div class="square" data-state="correct">S</div>
+        <div class="square" data-state="absent">H</div>
+      </div>
+    </div>
+
+    <br>
+    <h3>What the colours suggest:</h3>
+    <li>F is not in the answer</li>
+    <li>L is not in the answer</li>
+    <li>A is in the answer, not the right place</li>
+    <li>S is in the answer, in the right place</li>
+    <li>H is not in the answer</li>
+    <br>
+    <h3>Your keyboard will update to match the colours in the grid</h3>
+    <br>
+    <div class="keyboard">
+      <div class="row">
+        <button class="key" type="button" data-state="present">A</button>
+        <button class="key" type="button" data-state="correct">S</button>
+        <button class="key" type="button" data-state="default">D</button>
+        <button class="key" type="button" data-state="absent">F</button>
+        <button class="key" type="button" data-state="default">G</button>
+        <button class="key" type="button" data-state="absent">H</button>
+      </div>
+    </div>
+    <br>
+    <h3>The keys of a lighter grey colour are keys you have not tried yet</h3>
+    <br>
+    <h1>Hints</h1>
+    <br>
+    <h3>At the top of your screen you will see the hint button, which looks like this:</h3>
+    <button title="Get Hint" class="button" type="button">
+      <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="var(--colour-hinted)"><path d="M774-118 533-359q-30 21-70.29 33-40.29 12-81.68 12Q271-314 194-391t-77-187q0-110 77-187t187-77q110 0 187 77t77 187.03q0 41.39-11 79.18Q623-461 601-429l242 242-69 69ZM381-412q70 0 118-48t48-118q0-70-48-118t-118-48q-70 0-118 48t-48 118q0 70 48 118t118 48Z"/></svg>
+    </button>
+    <h3>When you click it, it will give you a little helping hand. It will update your keyboard to show a letter that is in the answer, but it will not show you where!</h3>
+    <br>
+
+    <div class="keyboard">
+      <div class="row">
+        <button class="key" type="button" data-state="default">A</button>
+        <button class="key" type="button" data-state="default">S</button>
+        <button class="key" type="button" data-state="default">D</button>
+        <button class="key" type="button" data-state="default">F</button>
+        <button class="key" type="button" data-state="hinted">G</button>
+        <button class="key" type="button" data-state="default">H</button>
+      </div>
+    </div>
+
+    <br>
+
+    <h1>Complex Cases</h1>
+    <br>
+    <h3>An example guess you might make:</h3>
+    <br>
+    <div class="grid">
+      <div class="row">
+        <div class="square" data-state="correct">S</div>
+        <div class="square" data-state="absent">H</div>
+        <div class="square" data-state="absent">O</div>
+        <div class="square" data-state="absent">E</div>
+        <div class="square" data-state="present">S</div>
+      </div>
+    </div>
+    <br>
+    <h3>You might think that there was only one 'S' in the actual answer, and it is in position 1, and the second 'S' is not giving you any information.</h3>
+    <br>
+    <h3>The reality is, if a letter lights up more than once in your guess, then there are at least that many occurrences of the letter in the answer.</h3>
+    <br>
+    <h3>Lets take another guess for that same answer:</h3>
+    <br>
+
+    <div class="grid">
+      <div class="row">
+        <div class="square" data-state="correct">S</div>
+        <div class="square" data-state="absent">A</div>
+        <div class="square" data-state="correct">S</div>
+        <div class="square" data-state="absent">S</div>
+        <div class="square" data-state="absent">Y</div>
+      </div>
+    </div>
+
+    <br>
+    <h3>Here we see that the third 'S' does not light up and there must be exactly two occurences of 'S' in our answer!</h3>
+
+  </dialog>
+
   <script src="script.js"></script>
+
 </body>
 </html>
