@@ -511,18 +511,28 @@ async function init() {
 
     });
 
-    showHelp();
     let dialog = document.getElementById("test-dialog");
     dialog.addEventListener('close', function() {
         inModal = false;
     });
+
+    if (DEBUG_LEVEL > 0) {
+        localStorage.removeItem('hasVisited');
+    }
+
+    let visited = localStorage.getItem('hasVisited');
+
+    if (visited === null) {
+        showHelp();
+        localStorage.setItem('hasVisited', 'true');
+    }
 
 }
 
 // Add listener to call init function when the DOM has loaded
 document.addEventListener('DOMContentLoaded', init);
 
-
+// Shgow help as modal dialog
 function showHelp() {
     let dialog = document.getElementById("test-dialog");
     inModal = true;
